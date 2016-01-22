@@ -357,3 +357,12 @@ Completed 200 OK in 3809ms (Views: 3807.6ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/assets/custom.self-a138865564b14bfd48dba795ea7b77dab9f6e584cc4aa895c4044f59c5ea31bd.css?body=1" for ::1 at 2016-01-22 17:40:28 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 17:53:49 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (2.9ms)
+  Rendered layouts/_shim.html.erb (1.5ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (2.0ms)
+Completed 200 OK in 1425ms (Views: 1421.2ms | ActiveRecord: 0.0ms)
