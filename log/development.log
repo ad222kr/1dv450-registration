@@ -1,0 +1,359 @@
+
+
+Started GET "/" for ::1 at 2016-01-22 14:54:09 +0100
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (19.2ms)
+Completed 200 OK in 340ms (Views: 223.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 15:01:55 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (1.0ms)
+Completed 200 OK in 8095ms (Views: 8094.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-01-22 15:02:03 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-01-22 15:02:03 +0100
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-01-22 15:02:04 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-01-22 15:02:04 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 15:07:35 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (4.5ms)
+Completed 500 Internal Server Error in 588ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (File to import not found or unreadable: boostrap-sprockets.
+Load paths:
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/images
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/stylesheets
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/turbolinks-2.5.3/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/jquery-rails-4.1.0/vendor/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/coffee-rails-4.1.1/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/fonts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/images
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title><%= full_title(yield(:title)) %> | Registretingsapp 1dv450</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8:   <!--[if lt IE 9]>
+  app/assets/stylesheets/custom.css.scss:1
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__675385179_53324844'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (12.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (213.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (170.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (512.9ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 15:12:16 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (4.5ms)
+Completed 500 Internal Server Error in 428ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (File to import not found or unreadable: boostrap-sprockets.
+Load paths:
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/images
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/stylesheets
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/turbolinks-2.5.3/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/jquery-rails-4.1.0/vendor/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/coffee-rails-4.1.1/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/fonts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/images
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title><%= full_title(yield(:title)) %> | Registretingsapp 1dv450</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8:   <!--[if lt IE 9]>
+  app/assets/stylesheets/custom.css.scss:1
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___984713924_54185196'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (33.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (97.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (61.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (142.6ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 15:13:54 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (4.5ms)
+Completed 500 Internal Server Error in 455ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (File to import not found or unreadable: boostrap-sprockets.
+Load paths:
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/images
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/stylesheets
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/turbolinks-2.5.3/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/jquery-rails-4.1.0/vendor/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/coffee-rails-4.1.1/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/fonts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/images
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title><%= full_title(yield(:title)) %> | Registretingsapp 1dv450</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8:   <!--[if lt IE 9]>
+  app/assets/stylesheets/custom.css.scss:1
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___686739137_52613064'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (34.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (106.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (84.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (158.6ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 15:15:16 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 425ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (File to import not found or unreadable: boostrap-sprockets.
+Load paths:
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/images
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/assets/stylesheets
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/javascripts
+  C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/vendor/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/turbolinks-2.5.3/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/jquery-rails-4.1.0/vendor/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/coffee-rails-4.1.1/lib/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/javascripts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/fonts
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/images
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/bootstrap-sass-3.2.0.0/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title><%= full_title(yield(:title)) %> | Registretingsapp 1dv450</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8:   <!--[if lt IE 9]>
+  app/assets/stylesheets/custom.css.scss:1
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___842430190_53858268'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (33.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (87.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (58.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (134.1ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 15:16:37 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+Completed 200 OK in 9558ms (Views: 9556.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-aa9cf23afd819030c899365ffc4d056546dc8a2673e648d769e43d32af2fe185.css?body=1" for ::1 at 2016-01-22 15:16:47 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 15:20:39 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (8.0ms)
+Completed 200 OK in 11136ms (Views: 11110.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 15:20:51 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+Completed 200 OK in 238ms (Views: 237.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-5ea071227ed8bd9003616dd6c417d9bff3a057bd08bbe27ad11333f00be5538a.css?body=1" for ::1 at 2016-01-22 15:20:51 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 15:22:42 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+Completed 200 OK in 3992ms (Views: 3991.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-8b281b7a53b2535b1d586725194b0890d932b8804a8a7a3d5496344be2fe6622.css?body=1" for ::1 at 2016-01-22 15:22:47 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 15:23:29 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+Completed 200 OK in 4301ms (Views: 4300.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-fe5d9cd144ab75a1bc8049adcc07cb0412eeb509e511c6a29a0bbb952169b156.css?body=1" for ::1 at 2016-01-22 15:23:33 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 15:27:30 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 4496ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Missing partial layout/_shim with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "C:/Users/Alex/Desktop/Plugg/Webramverk/1dv450-registration/app/views"
+):
+     5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+     6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+     7:   <%= csrf_meta_tags %>
+     8:   <%= render 'layout/shim' %>
+     9: </head>
+    10: <body>
+    11:   <%= render 'layout/header' %>
+  app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___8243254_92624304'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (57.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (59.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (126.1ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 15:28:18 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 137ms (Views: 136.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-015da679804200c40dd486747e2043506b1b22013b253aa45c18f42d8c54c66d.css?body=1" for ::1 at 2016-01-22 15:28:18 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 15:28:44 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 4002ms (Views: 4001.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-ba82cacaafa2377327b3a2f8686ecefc4e8d59998d449dc0d10c099c882a4139.css?body=1" for ::1 at 2016-01-22 15:28:48 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 17:25:58 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 5584ms (Views: 5578.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-1588af203dcd57d618ea997b05c0fe9324a012c367a29d44e5f1f9e7eb04208b.css?body=1" for ::1 at 2016-01-22 17:26:04 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 17:30:01 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 133ms (Views: 132.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-01-22 17:31:20 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 3644ms (Views: 3643.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-4c67b1b733e43f2bbd2cd51ba5ffbd925319d57855fc7873328d331df416eaea.css?body=1" for ::1 at 2016-01-22 17:31:23 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 17:34:08 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 3701ms (Views: 3700.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-2e098b7d7b0f018c4c737c2bf211087785169dfa1b4bc80cdacb42dd4a16eac5.css?body=1" for ::1 at 2016-01-22 17:34:12 +0100
+
+
+Started GET "/" for ::1 at 2016-01-22 17:40:24 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 3809ms (Views: 3807.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/custom.self-a138865564b14bfd48dba795ea7b77dab9f6e584cc4aa895c4044f59c5ea31bd.css?body=1" for ::1 at 2016-01-22 17:40:28 +0100
