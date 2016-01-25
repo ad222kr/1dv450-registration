@@ -109,8 +109,9 @@ textarea {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  transition: all ease 1s;
   &:hover {
-    color: #B00100;
+    color: #33bada;
     text-decoration: none;
   }
 }
