@@ -55,7 +55,7 @@ fabric.properties
 db/*.sqlite3
 /db/*.sqlite3-journal
 /log/*
-/tmp/*
+tmp/*
 
 
 **.war
