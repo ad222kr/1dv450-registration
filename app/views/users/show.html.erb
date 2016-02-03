@@ -12,6 +12,16 @@
         <%= @user.email %>
       </h2>
       </div>
+      <div>
+        <h1>Registered apps</h1>
+        <ul>
+
+            <% @user.apps.each do |app| %>
+              <li><%= app.name + ": " + app.api_key %></li>
+            <% end %>
+
+        </ul>
+      </div>
     </section>
   </aside>
 </div>

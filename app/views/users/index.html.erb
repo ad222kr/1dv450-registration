@@ -1,0 +1,14 @@
+<%provide(:title, 'All users') %>
+<h1>Administrate registered users</h1>
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <ul><%= user.name %></ul>
+      <ul><%= user.email %></ul>
+      <ul>
+        Apps registered to this user here:
+        <li></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
