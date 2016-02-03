@@ -47,4 +47,24 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end
+
+  def check_if_logged_in
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in"
+      redirect_to login_url
+    end
+  end
+
+  def check_if_correct_user
+    redirect_to root_path unless @user == current_user
+  end
+
+  def check_if_admin
+    redirect_to root_path unless current_user.admin?
+  end
+
+  def redirect_to_profile_if_logged_in
+    redirect_to user_path(current_user) if logged_in?
+  end
 end

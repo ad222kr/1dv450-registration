@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :fetch_user, only: [:show, :edit, :update, :check_if_correct_user]
   before_action :check_if_logged_in, only: [:show, :edit, :update]
   before_action :check_if_correct_user, only: [:show, :edit, :update]
-  before_action :check_if_admin, only: [:index]
   before_action :redirect_to_profile_if_logged_in, only: [:new]
 
 
@@ -50,24 +49,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def check_if_logged_in
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in"
-        redirect_to login_url
-      end
-    end
 
-    def check_if_correct_user
-      redirect_to root_path unless @user == current_user
-    end
-
-    def check_if_admin
-      redirect_to root_path unless current_user.admin?
-    end
-
-    def redirect_to_profile_if_logged_in
-      redirect_to user_path(current_user) if logged_in?
-    end
 
 end
