@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <section class="user_info">
       <% if @user.admin? %>
       <div><h1>Administration</h1></div>
@@ -17,34 +17,39 @@
       </div>
     </section>
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-9">
 
-  </div>
-</div>
-
-
-<div>
-  <table class="table">
-    <tr>
-      <th>App</th>
-      <th>API-Key</th>
-      <th>User</th>
-      <th></th>
-    </tr>
-
-    <% if @apps.any? %>
-      <% @apps.each do |app| %>
+      <table class="table">
         <tr>
-          <td><%= app.name %></td>
-          <td><%= app.api_key %></td>
-          <td><%= app.user.name  %></td>
-          <td><%= link_to "Remove application", [app.user, app],
-                          method: :delete,
-                          data: { confirm: "Are you sure you want to remove this app?"} %></td>
+          <th>App</th>
+          <th>API-Key</th>
+          <th>User</th>
+          <th></th>
         </tr>
 
-      <% end %>
-    <% end %>
-  </table>
+        <% if @apps.any? %>
+            <% @apps.each do |app| %>
+                <tr>
+                  <td><%= app.name %></td>
+                  <td><%= app.api_key %></td>
+                  <td><%= app.user.name  %></td>
+                  <td><%= link_to "Remove application", [app.user, app],
+                                  method: :delete,
+                                  data: { confirm: "Are you sure you want to remove this app?"} %></td>
+                </tr>
 
+            <% end %>
+        <% end %>
+      </table>
+
+
+
+
+</div>
+</div>
+
+<div class="row">
+  <div class="col-mod-4 text-center">
+  <%= link_to "Register application", new_user_app_path(@user), class: "btn btn-primary btn-lg" %>
+  </div>
 </div>
