@@ -11,5 +11,13 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 @testuser = User.create(name: "Test User", email:"testuser@example.com", password: "testuserpassword",
             password_confirmation: "testuserpassword")
 
-@testuser.apps << App.create(name: "TestApp", api_key: "justATestApiKeyOne")
-@testuser.apps << App.create(name: "TestApp2", api_key: "justATestApiKeyTwoLol")
+@testuser2 = User.create(name: "Test Usah!!", email: "testuser2@example.com", password: "testuser2password",
+                         password_confirmation: "testuser2password")
+
+
+
+@testuser.apps.create(name: "TestApp", api_key: "justATestApiKeyOne")
+@testuser.apps.create(name: "TestApp2", api_key: "justATestApiKeyTwoLol")
+
+@testuser2.apps.create(name: "Twittah!", api_key: "thwittahLOLOLOLOLOL")
+@testuser2.apps.create(name: "Faceboookah", api_key: "facebokahYOYOYO")

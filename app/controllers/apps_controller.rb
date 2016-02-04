@@ -30,7 +30,9 @@ class AppsController < ApplicationController
   end
 
   def destroy
-
+    App.find(params[:id]).destroy
+    flash[:success] = "App deleted!"
+    redirect_to user_path(current_user)
   end
 
   private

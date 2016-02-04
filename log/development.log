@@ -7933,3 +7933,2499 @@ Processing by UsersController#show as HTML
   Rendered layouts/_header.html.erb (0.5ms)
   Rendered layouts/_footer.html.erb (0.0ms)
 Completed 200 OK in 169ms (Views: 164.1ms | ActiveRecord: 1.5ms)
+  [1m[36m (64.0ms)[0m  [1mDROP TABLE "apps"[0m
+  [1m[35m (58.3ms)[0m  CREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (70.0ms)[0m  CREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")
+  [1m[36m (72.8ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (104.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (277.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (75.0ms)[0m  [1mCREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (100.0ms)[0m  [1mCREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [1m[35m (89.3ms)[0m  DROP TABLE "users"
+  [1m[36m (83.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (131.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (134.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203141617')
+  [1m[36m (93.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203123712')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (1.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Admin Svensson"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$KeP4yqC6y5gRvyxLdAN7luyMjLZLSCjQBc6cT.ju64KO0QExKLpWW"], ["admin", "t"], ["created_at", "2016-02-04 19:07:31.811375"], ["updated_at", "2016-02-04 19:07:31.811375"]]
+  [1m[35m (202.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Test User"], ["email", "testuser@example.com"], ["password_digest", "$2a$10$Yb6GPWWWu35ON0w3Oz6D8.UOVieFFWyyzaDgervTDHZtBEzNBcwh2"], ["created_at", "2016-02-04 19:07:32.120134"], ["updated_at", "2016-02-04 19:07:32.120134"]]
+  [1m[35m (62.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mApp Exists (1.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "4a829d011a7578cdbc911bd740f5d9cd"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "TestApp"], ["api_key", "4a829d011a7578cdbc911bd740f5d9cd"], ["created_at", "2016-02-04 19:07:32.284288"], ["updated_at", "2016-02-04 19:07:32.284288"]]
+  [1m[35m (84.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?  [["user_id", 2], ["updated_at", "2016-02-04 19:07:32.424881"], ["id", 1]]
+  [1m[36m (89.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "e70b9021c4bc1227ac698bba2709d246"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "TestApp2"], ["api_key", "e70b9021c4bc1227ac698bba2709d246"], ["created_at", "2016-02-04 19:07:32.519561"], ["updated_at", "2016-02-04 19:07:32.519561"]]
+  [1m[36m (95.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?[0m  [["user_id", 2], ["updated_at", "2016-02-04 19:07:32.619626"], ["id", 2]]
+  [1m[35m (89.4ms)[0m  commit transaction
+
+
+Started GET "/" for ::1 at 2016-02-04 20:20:46 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (14.0ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 4748ms (Views: 4711.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/apps.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/custom.self-c036888f97ae6fd9dca559d5ff07e9fafe4231a044f04f0877ce4f669e02a14b.css?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/bootstrap.self-d0e973a52d36a01036265aeefaf2d1ae3499d2cb231a9be3bd846432daf231de.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/apps.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/assets/application.self-7862a8a8b42407b4741a1adeeea35f0d13ddc4f702ec532adb0674491d296495.js?body=1" for ::1 at 2016-02-04 20:20:52 +0100
+
+
+Started GET "/login" for ::1 at 2016-02-04 20:20:54 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (148.1ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 253ms (Views: 252.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 20:21:01 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lxSCjQofhqDBqo/SfOuDSSznVvO+sy/f34Aoil2A7g5D4Sfp9OPJ8TE5LihOqR5sAixUbus/P57XIlvS9GgVog==", "session"=>{"email"=>"testuser@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "testuser@example.com"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 151ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 20:21:01 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (49.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 212ms (Views: 206.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2/apps/new" for ::1 at 2016-02-04 20:21:07 +0100
+Processing by AppsController#new as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered apps/new.html.erb within layouts/application (27.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 138ms (Views: 137.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/2/apps" for ::1 at 2016-02-04 20:21:13 +0100
+Processing by AppsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"36FkRYC6QsrXDZNArXqitCMVfTqceCQS2MlDbvakJR4LVMEhfkYNmyeeMrqfOD+RDd5/p8n0NFPQazA2X0zesg==", "app"=>{"name"=>"Twittah!"}, "commit"=>"Register application", "user_id"=>"2"}
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "16858bfd5013efff0b3b0d9a6cd51e2a"]]
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "apps" ("name", "created_at", "updated_at", "api_key") VALUES (?, ?, ?, ?)[0m  [["name", "Twittah!"], ["created_at", "2016-02-04 19:21:13.302244"], ["updated_at", "2016-02-04 19:21:13.302244"], ["api_key", "16858bfd5013efff0b3b0d9a6cd51e2a"]]
+  [1m[35m (72.2ms)[0m  commit transaction
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?[0m  [["user_id", 2], ["updated_at", "2016-02-04 19:21:13.397414"], ["id", 3]]
+  [1m[35m (72.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 181ms (ActiveRecord: 146.9ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 20:21:13 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 110ms (Views: 108.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/2/edit" for ::1 at 2016-02-04 20:21:25 +0100
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered shared/_error_messages.html.erb (1.0ms)
+  Rendered users/_user_form.erb (6.0ms)
+  Rendered users/edit.html.erb within layouts/application (8.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 120ms (Views: 119.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 20:21:28 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 101ms (Views: 98.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 20:21:33 +0100
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered home/index.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 107ms (Views: 107.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 20:21:35 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 122ms (Views: 120.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 20:21:39 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"pLKn5gTmz5r8CeMVb4dg+0VvxQ/HC/F6stVJk4yrgrlwRwKC+hqAywyaQu9dxf3ea6THkpKH4Tu6dzrLJUN5FQ=="}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 20:21:39 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 102ms (Views: 102.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:01:53 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 142ms (Views: 140.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:01:54 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 114ms (Views: 112.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:02:03 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CZyStuxJOLqcMbWTwpOTKniJxrXtshjQzZuzPdRHlOndaTfSErV362yiFGnw0Q4PVkLEKLg+CJHFOcBlfa9vRQ==", "session"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "admin@example.com"]]
+  Rendered sessions/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 121ms (Views: 110.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:02:14 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Ysoih5fRLzGVI008pi/vad49wJqreszwVCiPjiLariG2P4fjaS1gYGWw7MaUbXJM8PbCB/723LFcivzWizJVjQ==", "session"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "admin@admin.com"]]
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 83ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:02:14 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (32.1ms)
+Completed 500 Internal Server Error in 43ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined local variable or method `user' for #<#<Class:0x99e9ca0>:0x9a07850>):
+    2: <div class="row">
+    3:   <aside class="col-md-4">
+    4:     <section class="user_info">
+    5:       <% if user.admin? %>
+    6:       <div><h1>Administration</h1></div>
+    7:       <% end %>
+    8:       <div><h2>
+  app/views/users/show.html.erb:5:in `_app_views_users_show_html_erb__122869804_80754240'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (15.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (87.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (108.4ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:02:25 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 1]]
+  Rendered users/show.html.erb within layouts/application (8.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 112ms (Views: 110.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:13:32 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (12.0ms)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `developer' for #<App:0xac77e10>):
+    37:       <td><%= app.name %></td>
+    38:       <td><%= app.api_key %></td>
+    39:       <td><%= app.user.name if @user.admin? %></td>
+    40:       <td><%= link_to "Remove application", [app.developer, app.key],
+    41:               method: delete,
+    42:               data: { confirm: "Are you sure you want to remove this app?"} %></td>
+    43:     </tr>
+  app/views/users/show.html.erb:40:in `block in _app_views_users_show_html_erb__122869804_90693108'
+  app/views/users/show.html.erb:35:in `_app_views_users_show_html_erb__122869804_90693108'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (97.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:13:41 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `key' for #<App:0xadb36b0>):
+    37:       <td><%= app.name %></td>
+    38:       <td><%= app.api_key %></td>
+    39:       <td><%= app.user.name if @user.admin? %></td>
+    40:       <td><%= link_to "Remove application", [app.user, app.key],
+    41:               method: delete,
+    42:               data: { confirm: "Are you sure you want to remove this app?"} %></td>
+    43:     </tr>
+  app/views/users/show.html.erb:40:in `block in _app_views_users_show_html_erb__122869804_91100112'
+  app/views/users/show.html.erb:35:in `_app_views_users_show_html_erb__122869804_91100112'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (95.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:13:48 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (18.6ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 3.0ms)
+
+ActionView::Template::Error (undefined local variable or method `delete' for #<#<Class:0xad1ed60>:0x9bc7c18>):
+    38:       <td><%= app.api_key %></td>
+    39:       <td><%= app.user.name if @user.admin? %></td>
+    40:       <td><%= link_to "Remove application", [app.user, app.api_key],
+    41:               method: delete,
+    42:               data: { confirm: "Are you sure you want to remove this app?"} %></td>
+    43:     </tr>
+    44: 
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_81672156'
+  app/views/users/show.html.erb:35:in `_app_views_users_show_html_erb__122869804_81672156'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (56.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (118.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:16:27 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (24.3ms)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 4.0ms)
+
+ActionView::Template::Error (undefined local variable or method `delete' for #<#<Class:0x7af0478>:0x7ae2db0>):
+    38:       <td><%= app.api_key %></td>
+    39:       <td><%= app.user.name if @user.admin? %></td>
+    40:       <td><%= link_to "Remove application", [app.user, app.api_key],
+    41:               method: delete,
+    42:               data: { confirm: "Are you sure you want to remove this app?"} %></td>
+    43:     </tr>
+    44: 
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_81672156'
+  app/views/users/show.html.erb:35:in `_app_views_users_show_html_erb__122869804_81672156'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (45.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (51.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (109.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:16:43 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (18.1ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `user_4a829d011a7578cdbc911bd740f5d9cd_path' for #<#<Class:0x7af0478>:0x981dc20>):
+    37:       <td><%= app.name %></td>
+    38:       <td><%= app.api_key %></td>
+    39:       <td><%= app.user.name if @user.admin? %></td>
+    40:       <td><%= link_to "Remove application", [app.user, app.api_key],
+    41:               method: :delete,
+    42:               data: { confirm: "Are you sure you want to remove this app?"} %></td>
+    43:     </tr>
+  app/views/users/show.html.erb:40:in `block in _app_views_users_show_html_erb__122869804_79751196'
+  app/views/users/show.html.erb:35:in `_app_views_users_show_html_erb__122869804_79751196'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (42.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (93.8ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:20:34 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 121ms (Views: 117.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:20:49 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (19.0ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `user_4a829d011a7578cdbc911bd740f5d9cd_path' for #<#<Class:0x7af0478>:0xb164f38>):
+    37:       <td><%= app.name %></td>
+    38:       <td><%= app.api_key %></td>
+    39:       <td><%= app.user.name if @user.admin? %></td>
+    40:       <td><%= link_to "Remove application", [app.user, app.api_key],
+    41:                       method: :delete,
+    42:                       data: { confirm: "Are you sure you want to remove this app?"} %></td>
+    43:     </tr>
+  app/views/users/show.html.erb:40:in `block in _app_views_users_show_html_erb__122869804_92995440'
+  app/views/users/show.html.erb:35:in `_app_views_users_show_html_erb__122869804_92995440'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (45.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (94.7ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:21:00 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (5.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 112ms (Views: 110.1ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/users/2/apps/3" for ::1 at 2016-02-04 21:21:08 +0100
+Processing by AppsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"pJlg1POdIhtX4S8497GQD9XJ/kf0YO9IagYgqgtloodwbMWwDWFtSqdyjsLF8w0q+wL82qHs/wlipFPyoo1ZKw==", "user_id"=>"2", "id"=>"3"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=3):
+  app/controllers/apps_controller.rb:33:in `destroy'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (42.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (95.2ms)
+
+
+Started GET "/users/3" for ::1 at 2016-02-04 21:21:21 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=3):
+  app/controllers/users_controller.rb:50:in `fetch_user'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (95.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (158.4ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:21:24 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :check_if_correct_user rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:21:24 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered home/index.erb within layouts/application (0.7ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 116ms (Views: 114.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:21:33 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 111ms (Views: 108.8ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 21:21:38 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ISpXCD3sLd/5P/2rr67NlTV4BTFaQbn26cPjNNIfBW713/JswxBijgmsXFGd7FCwG7MHrA/NqbfhYZBse/f+wg=="}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:21:38 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 103ms (Views: 102.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:21:39 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 119ms (Views: 118.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:21:45 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Pbu+wvKo/NUHfR9j31iuulFhtvqsnziHbmXcQqgxiMnpThumDFSzhPfuvpntGjOff6q0Z/kTKMZmx68aAdlzZQ==", "session"=>{"email"=>"testuser@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "testuser@example.com"]]
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 175ms (Views: 98.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:21:51 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"izocNBqMHqjyc/a/VTjtgDiYIDmsv6+XLrUPKbei7Stfz7lQ5HBR+QLgV0VnenClFlMipPkzv9YmF3xxHkoWhw==", "session"=>{"email"=>"testuser@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "testuser@example.com"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 78ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:21:51 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 109ms (Views: 105.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/2/apps/3" for ::1 at 2016-02-04 21:21:54 +0100
+Processing by AppsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ybpccroVHxNgTAizTiYMw+BAxb9TPNNBjp0nUQfpuBAdT/kWROlQQpDfqUl8ZJHmzovHIgawwwCGP1QJrgFDvA==", "user_id"=>"2", "id"=>"3"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=3):
+  app/controllers/apps_controller.rb:33:in `destroy'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (42.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (97.2ms)
+
+
+Started GET "/users/2/apps/3" for ::1 at 2016-02-04 21:22:07 +0100
+Processing by AppsController#show as HTML
+  Parameters: {"user_id"=>"2", "id"=>"3"}
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.0ms)
+
+ActionView::MissingTemplate (Missing template apps/show, application/show with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views"
+):
+  actionview (4.2.5) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.5) lib/action_view/lookup_context.rb:121:in `find'
+  C:in `find_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (42.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (93.7ms)
+
+
+Started GET "/users/2/" for ::1 at 2016-02-04 21:22:18 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Load (1.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 120ms (Views: 105.4ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/users/2/apps/1" for ::1 at 2016-02-04 21:22:21 +0100
+Processing by AppsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"PeWjauhr0OBOsFOUFZesBVVMrQFoA4TResKMCxyun+7pEAYOFpefsb4j8m4n1TEge4evnD2PlJByYP9TtUZkQg==", "user_id"=>"2", "id"=>"1"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  DELETE FROM "apps" WHERE "apps"."id" = ?  [["id", 1]]
+  [1m[36m (61.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 68ms (ActiveRecord: 61.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:22:21 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+Redirected to http://localhost:3000/
+Filter chain halted as :check_if_correct_user rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:22:21 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered home/index.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 103ms (Views: 103.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:22:42 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 147ms (Views: 129.0ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/users/2/apps/3" for ::1 at 2016-02-04 21:22:44 +0100
+Processing by AppsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"+sdr9X4M+SJznAfsrs83SfCYWNZiuNHP9Uqa00W0iWMuMs6RgPC2c4MPphacjaps3lNaSzc0wY796OmL7Fxyzw==", "user_id"=>"2", "id"=>"3"}
+  [1m[35mApp Load (1.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (1.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mDELETE FROM "apps" WHERE "apps"."id" = ?[0m  [["id", 3]]
+  [1m[35m (64.9ms)[0m  commit transaction
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 67.9ms)
+
+NoMethodError (undefined method `user' for nil:NilClass):
+  app/controllers/apps_controller.rb:35:in `destroy'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (47.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (99.1ms)
+
+
+Started GET "/users/2/apps/3" for ::1 at 2016-02-04 21:23:13 +0100
+Processing by AppsController#show as HTML
+  Parameters: {"user_id"=>"2", "id"=>"3"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", 3]]
+Completed 404 Not Found in 9ms (ActiveRecord: 1.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find App with 'id'=3):
+  app/controllers/apps_controller.rb:44:in `fetch_app'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (45.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (98.1ms)
+
+
+Started GET "/users/2/" for ::1 at 2016-02-04 21:23:19 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 124ms (Views: 110.1ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/users/2/apps/2" for ::1 at 2016-02-04 21:23:21 +0100
+Processing by AppsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"gstZxZZJ4VjSiy7A6Q6waaQOFVfArMrUyEqZ+5XE5gdWPvyhaLWuCSIYjzrbTC1MisUXypUg2pXA6OqjPCwdqw==", "user_id"=>"2", "id"=>"2"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  DELETE FROM "apps" WHERE "apps"."id" = ?  [["id", 2]]
+  [1m[36m (69.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 75ms (ActiveRecord: 70.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:23:22 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 100ms (Views: 97.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:23:26 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 143ms (Views: 143.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:23:27 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 100ms (Views: 96.8ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test Usah!!"], ["email", "testuser2@example.com"], ["password_digest", "$2a$10$7zGfXMGA89j2FwGKEPfjVuL7EDwBZSNS9tozOvJhlcmyY1/V7Imsi"], ["created_at", "2016-02-04 20:25:39.691485"], ["updated_at", "2016-02-04 20:25:39.691485"]]
+  [1m[36m (125.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "e30e11e83449445feb2e221f1795ced0"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "TestApp"], ["api_key", "e30e11e83449445feb2e221f1795ced0"], ["created_at", "2016-02-04 20:25:39.863372"], ["updated_at", "2016-02-04 20:25:39.863372"]]
+  [1m[36m (78.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "fcbb1c6d19c1a1ada8c654e0da7a3162"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "TestApp2"], ["api_key", "fcbb1c6d19c1a1ada8c654e0da7a3162"], ["created_at", "2016-02-04 20:25:39.972750"], ["updated_at", "2016-02-04 20:25:39.972750"]]
+  [1m[36m (62.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "8949d4c241cce65202d265594dca37c0"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Twittah!"], ["api_key", "8949d4c241cce65202d265594dca37c0"], ["created_at", "2016-02-04 20:25:40.050878"], ["updated_at", "2016-02-04 20:25:40.050878"]]
+  [1m[36m (62.5ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:26:07 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 101ms (Views: 98.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:26:10 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 125ms (Views: 124.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:26:11 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered home/index.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 100ms (Views: 98.3ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 21:26:13 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"brLeUX05rS7MFCN8vk8Ko24w7vv2yO4Tf3bXW4OMuhm6R3s1g8XifzyHgoaMDZeGQPvsZqNE/lJ31KQDKmRBtQ=="}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 6ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:26:13 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 100ms (Views: 100.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:26:14 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 105ms (Views: 103.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:26:18 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vT6CSKfK4fYVn3oJL+r8V97BapJ7cMNzR0BASxNYpkRpyycsWTaup+UM2/MdqGFy8ApoDy780zJP4jMTurBd6A==", "session"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "admin@admin.com"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 79ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:26:18 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    36:     <tr>
+    37:       <td><%= app.name %></td>
+    38:       <td><%= app.api_key %></td>
+    39:       <td><%= app.user.name if @user.admin? %></td>
+    40:       <td><%= link_to "Remove application", [app.user, app],
+    41:                       method: :delete,
+    42:                       data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:39:in `block in _app_views_users_show_html_erb__122869804_82503948'
+  app/views/users/show.html.erb:35:in `_app_views_users_show_html_erb__122869804_82503948'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (96.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:26:49 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+SyntaxError (C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:50: syntax error, unexpected keyword_ensure, expecting keyword_end
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:52: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/views/users/show.html.erb:50: syntax error, unexpected keyword_ensure, expecting keyword_end
+  app/views/users/show.html.erb:52: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (60.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (97.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:39:56 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+SyntaxError (C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:51: syntax error, unexpected keyword_ensure, expecting keyword_end
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:53: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/views/users/show.html.erb:51: syntax error, unexpected keyword_ensure, expecting keyword_end
+  app/views/users/show.html.erb:53: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (100.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:40:36 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (10.0ms)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name if @user.admin? %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_80967888'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_80967888'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (50.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (96.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:40:50 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name if @user.admin? %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_80967888'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_80967888'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (45.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (49.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (106.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:41:13 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name if @user.admin? %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_81717732'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_81717732'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (45.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (96.5ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:42:06 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name  %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_68641644'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_68641644'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (96.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:42:49 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+SyntaxError (C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:52: syntax error, unexpected keyword_ensure, expecting end-of-input):
+  app/views/users/show.html.erb:52: syntax error, unexpected keyword_ensure, expecting end-of-input
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (45.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (97.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:43:04 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (17.7ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `app_path' for #<#<Class:0xa3799a0>:0x9e24898>):
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+    45:         </tr>
+  app/views/users/show.html.erb:42:in `block in _app_views_users_show_html_erb__122869804_82902576'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_82902576'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (60.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (45.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (98.1ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:43:12 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :check_if_correct_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:43:12 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered home/index.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 104ms (Views: 104.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:43:14 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps"
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name  %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_82738932'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_82738932'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (31.3ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (46.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (93.8ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:43:15 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps"
+  Rendered users/show.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name  %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_71501412'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_71501412'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (13.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (56.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (95.1ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 21:43:18 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"f7Ok2nxvx2Dyll16kFK0zSPsyiLKwUAFQZykf+dycHSrRgG+gpOIMQIF/ICiECnoDSfIv59NUERJPtcnTpqL2A=="}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:43:18 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 101ms (Views: 99.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:43:19 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 151ms (Views: 149.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:43:25 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KfvZRisJnDdPkwAQkpSP70IiOFxXcCtjhCQI1Z1C46X9Dnwi1fXTZr8Aoeqg1hLKbOk6wQL8OyKMhnuNNKoYCQ==", "session"=>{"email"=>"testuser@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "testuser@example.com"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 80ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:43:25 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 106ms (Views: 103.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:43:59 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 2.0ms)
+
+SyntaxError (C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:41: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+...f @user.admin? app.user.name  );@output_buffer.safe_append='...
+...                               ^
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:47: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;       end 
+                   ^
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:52: syntax error, unexpected keyword_ensure, expecting ')'
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/APIRegistrering/app/views/users/show.html.erb:54: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/users/show.html.erb:41: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+  app/views/users/show.html.erb:47: syntax error, unexpected keyword_end, expecting ')'
+  app/views/users/show.html.erb:52: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/users/show.html.erb:54: syntax error, unexpected keyword_end, expecting ')'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.8ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (96.1ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:44:27 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 108ms (Views: 106.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:44:31 +0100
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered home/index.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 99ms (Views: 99.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:44:32 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Exists (1.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 104ms (Views: 101.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/2/apps/new" for ::1 at 2016-02-04 21:44:35 +0100
+Processing by AppsController#new as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered apps/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 104ms (Views: 102.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/2/apps" for ::1 at 2016-02-04 21:44:40 +0100
+Processing by AppsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"izEa+Rn+fMzNPeA8k8m59WUM7Bi7xXPd94Kg5Gzr6/NfxL+d5wIznT2uQcahiyTQS8fuhe5JY5z/INO8xQMQXw==", "app"=>{"name"=>"TWITTAHLOL"}, "commit"=>"Register application", "user_id"=>"2"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "9900c69ab1d214bbcd423e89b27233de"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "apps" ("name", "created_at", "updated_at", "api_key") VALUES (?, ?, ?, ?)  [["name", "TWITTAHLOL"], ["created_at", "2016-02-04 20:44:40.142966"], ["updated_at", "2016-02-04 20:44:40.142966"], ["api_key", "9900c69ab1d214bbcd423e89b27233de"]]
+  [1m[36m (116.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?  [["user_id", 2], ["updated_at", "2016-02-04 20:44:40.266122"], ["id", 7]]
+  [1m[36m (60.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 187ms (ActiveRecord: 179.4ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:44:40 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 110ms (Views: 105.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 21:44:46 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"BovcM00Q8/C9/E1H9fj11hK9iJ7YlwpprhoCTkFh8cTSfnlXs+y8oU1v7L3HumjzPHaKA40bGiimuHEW6IkKaA=="}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:44:46 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 149ms (Views: 149.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:44:47 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 161ms (Views: 160.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:44:52 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k1CijuRpigab0qu5TB49WDByS2gfdZe9JU1EktBRYHZHpQfqGpXFV2tBCkN+XKB9HrlJ9Ur5h/wt7zfKebmb2g==", "session"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "admin@admin.com"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 77ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:44:52 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name if @user.admin? %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_75999432'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_75999432'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (96.8ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:47:35 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 136ms (Views: 134.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:47:50 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "apps"
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name  %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_90583500'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_90583500'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (96.1ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:48:03 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 107ms (Views: 107.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 21:48:08 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ZUsNnqWGgFP5sVZOzPkXCokvzYKSE4mav9xnzQDqoo+xvqj6W3rPAgki97T+u4ovp+TPH8efmdu3fhSVqQJZIw=="}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:48:08 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 107ms (Views: 107.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:48:09 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 137ms (Views: 136.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:48:14 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1M2rTqRsw1Dsr+SaYK0jUD7P9KXT+MNT8e3/yVDf3v0AOA4qWpCMARw8RWBS7751EAT2OIZ00xL5T4yR+TclUQ==", "session"=>{"email"=>"testuser@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "testuser@example.com"]]
+  Rendered sessions/new.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 226ms (Views: 145.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:48:19 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nnitgmx5pXkzx2UwICYpQwtuPAmf0TwpHjddt/qD7l5KjQjmkoXqKMNUxMoSZLRmJaU+lMpdLGgWlS7vU2sV8g==", "session"=>{"email"=>"testuser@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "testuser@example.com"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 78ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:48:19 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 2]]
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 144ms (Views: 141.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:48:44 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 107ms (Views: 104.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 21:48:54 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 113ms (Views: 111.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 21:48:57 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"tisivQMFXI/97zFEeeHe9+lFy9fEkHtnumLIgEFyS6Vi3ofZ/fkT3g18kL5Lo0PSx47JSpEcayaywLvY6JqwCQ=="}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:48:57 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 115ms (Views: 115.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:48:58 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 103ms (Views: 102.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:49:06 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uCBuUSq/lzTH/j57EV4EGG7piptSzLwP44ZcU8hlLYxs1cs11EPYZTdtn4EjHJk9QCKIBgdArE7rJC8LYY3WIA==", "session"=>{"email"=>"testuser2@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "testuser2@example.com"]]
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 175ms (Views: 100.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:49:10 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 102ms (Views: 102.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for ::1 at 2016-02-04 21:49:11 +0100
+Processing by UsersController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered users/_user_form.erb (6.0ms)
+  Rendered users/new.html.erb within layouts/application (8.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 115ms (Views: 113.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2016-02-04 21:49:18 +0100
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ueGW3jQYW+C7MHBFB7LwU1RRXgeJvWd+mk71MESfEj5tFDO6yuQUsUuj0b818G12eppcmtwxdz+S7IZo7Xfpkg==", "user"=>{"name"=>"Alex Driaguine", "email"=>"alexdriagin12@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Registrera"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('alexdriagin12@gmail.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Alex Driaguine"], ["email", "alexdriagin12@gmail.com"], ["password_digest", "$2a$10$tQMhSUqr6H/xd2liZRIm9ugMrDw4hDp9pWBc6vzjU925c6k.mN21q"], ["created_at", "2016-02-04 20:49:18.795112"], ["updated_at", "2016-02-04 20:49:18.795112"]]
+  [1m[36m (129.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 213ms (ActiveRecord: 129.9ms)
+
+
+Started GET "/users/4" for ::1 at 2016-02-04 21:49:18 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mApp Exists (1.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (7.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 116ms (Views: 111.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/4/apps/new" for ::1 at 2016-02-04 21:49:23 +0100
+Processing by AppsController#new as HTML
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  Rendered apps/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 115ms (Views: 113.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/4/apps" for ::1 at 2016-02-04 21:49:29 +0100
+Processing by AppsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IgL/hmoiKt7lAh3qVVzRV+H5QWuXN0yjJd0aNuT+UH/291rilN5ljxWRvBBnHkxyzzJD9sK7XOItf2luTRar0w==", "app"=>{"name"=>"VäderAppN"}, "commit"=>"Register application", "user_id"=>"4"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "8f09cbdc450010dbabddf5c44f5d7fdb"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "created_at", "updated_at", "api_key") VALUES (?, ?, ?, ?)  [["name", "VäderAppN"], ["created_at", "2016-02-04 20:49:29.545444"], ["updated_at", "2016-02-04 20:49:29.545444"], ["api_key", "8f09cbdc450010dbabddf5c44f5d7fdb"]]
+  [1m[36m (115.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?  [["user_id", 4], ["updated_at", "2016-02-04 20:49:29.667389"], ["id", 8]]
+  [1m[36m (66.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 194ms (ActiveRecord: 183.9ms)
+
+
+Started GET "/users/4" for ::1 at 2016-02-04 21:49:29 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 4]]
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 107ms (Views: 100.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/4/apps/new" for ::1 at 2016-02-04 21:49:37 +0100
+Processing by AppsController#new as HTML
+  Parameters: {"user_id"=>"4"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  Rendered apps/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 154ms (Views: 153.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/4/apps" for ::1 at 2016-02-04 21:49:41 +0100
+Processing by AppsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3tBfhpoeMyMsUU6KDgkjIrIZIZ024cUHHkXYSHcBJDsKJfriZOJ8ctzC73A8S74HnNIjAGNt1UYW56sQ3unflw==", "app"=>{"name"=>"LOLAPPEN"}, "commit"=>"Register application", "user_id"=>"4"}
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mApp Exists (1.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "781a77154f39a41712dd83652425e684"]]
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "apps" ("name", "created_at", "updated_at", "api_key") VALUES (?, ?, ?, ?)[0m  [["name", "LOLAPPEN"], ["created_at", "2016-02-04 20:49:41.322444"], ["updated_at", "2016-02-04 20:49:41.322444"], ["api_key", "781a77154f39a41712dd83652425e684"]]
+  [1m[35m (115.3ms)[0m  commit transaction
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?[0m  [["user_id", 4], ["updated_at", "2016-02-04 20:49:41.441732"], ["id", 9]]
+  [1m[35m (76.2ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 200ms (ActiveRecord: 194.4ms)
+
+
+Started GET "/users/4" for ::1 at 2016-02-04 21:49:41 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (5.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 113ms (Views: 111.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 21:49:55 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"E5ZPLSYTJaaB+JF0ZlW8/29pai3UF6HAQsFzGA81Qe3HY+pJ2O9q93FrMI5UFyHaQaJosIGbsYFKYwBApt26QQ=="}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 21:49:55 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 101ms (Views: 101.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 21:49:56 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 176ms (Views: 175.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 21:50:00 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dc5wcOCdKry1JCExwIF+M+kSu84YVIdylWAUWrlwci+hO9UUHmFl7UW3gMvyw+MWx9m5U03YlzOdwmcCEJiJgw==", "session"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "admin@admin.com"]]
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 77ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:50:00 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps"
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    37:         <tr>
+    38:           <td><%= app.name %></td>
+    39:           <td><%= app.api_key %></td>
+    40:           <td><%= app.user.name  %></td>
+    41:           <td><%= link_to "Remove application", [app.user, app],
+    42:                           method: :delete,
+    43:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:40:in `block in _app_views_users_show_html_erb__122869804_81573048'
+  app/views/users/show.html.erb:36:in `_app_views_users_show_html_erb__122869804_81573048'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (94.1ms)
+
+
+Started POST "/users/console/repl_sessions/b109b77675e2405260780ea10f03e609/trace" for ::1 at 2016-02-04 21:54:34 +0100
+
+
+Started POST "/users/console/repl_sessions/b109b77675e2405260780ea10f03e609/trace" for ::1 at 2016-02-04 21:54:37 +0100
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:55:28 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (1.0ms)[0m  SELECT "apps".* FROM "apps"
+  Rendered users/show.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    38:         <tr>
+    39:           <td><%= app.name %></td>
+    40:           <td><%= app.api_key %></td>
+    41:           <td><%= app.user.name  %></td>
+    42:           <td><%= link_to "Remove application", [app.user, app],
+    43:                           method: :delete,
+    44:                           data: { confirm: "Are you sure you want to remove this app?"} %></td>
+  app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__122869804_82896828'
+  app/views/users/show.html.erb:37:in `_app_views_users_show_html_erb__122869804_82896828'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (45.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (43.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (95.1ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:55:38 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps"
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 125ms (Views: 123.1ms | ActiveRecord: 0.0ms)
+  [1m[36mApp Load (3.0ms)[0m  [1mSELECT "apps".* FROM "apps"[0m
+  [1m[36m (85.1ms)[0m  [1mDROP TABLE "apps"[0m
+  [1m[35m (74.4ms)[0m  CREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (72.3ms)[0m  CREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")
+  [1m[36m (82.3ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (75.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (65.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (110.1ms)[0m  [1mCREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (58.5ms)[0m  [1mCREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [1m[35m (65.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (73.7ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (63.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (65.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (92.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203141617')[0m
+  [1m[35m (59.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122175648')
+  [1m[36m (71.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122193703')[0m
+  [1m[35m (68.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122194925')
+  [1m[36m (66.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160126131324')[0m
+  [1m[35m (65.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203123712')
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin Svensson"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$IkGQ2gQqHvRCqJ/9nuns5OYGbGkvzUgiImY20XpZLkgJwOi/mKkqG"], ["admin", "t"], ["created_at", "2016-02-04 20:57:26.631229"], ["updated_at", "2016-02-04 20:57:26.631229"]]
+  [1m[36m (60.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test User"], ["email", "testuser@example.com"], ["password_digest", "$2a$10$iAeGIE3y44pcIe0xpu587eM83tuoCwAYUTbKvqm2gQPsyhofxI/be"], ["created_at", "2016-02-04 20:57:26.782331"], ["updated_at", "2016-02-04 20:57:26.782331"]]
+  [1m[36m (102.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test Usah!!"], ["email", "testuser2@example.com"], ["password_digest", "$2a$10$iBWFKcznwFN3DH3cob55Nu6vGMSuUdJbfaOApyfvrgVnACrE.ha3y"], ["created_at", "2016-02-04 20:57:26.963451"], ["updated_at", "2016-02-04 20:57:26.963451"]]
+  [1m[36m (80.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "9bd7275ae7458d868c7ac34dde105447"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "TestApp"], ["api_key", "9bd7275ae7458d868c7ac34dde105447"], ["created_at", "2016-02-04 20:57:27.077528"], ["updated_at", "2016-02-04 20:57:27.077528"]]
+  [1m[36m (64.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?[0m  [["user_id", 2], ["updated_at", "2016-02-04 20:57:27.163957"], ["id", 1]]
+  [1m[35m (62.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "dcb037ea3215d8df602a66962b05c5db"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "TestApp2"], ["api_key", "dcb037ea3215d8df602a66962b05c5db"], ["created_at", "2016-02-04 20:57:27.229047"], ["updated_at", "2016-02-04 20:57:27.229047"]]
+  [1m[35m (76.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?  [["user_id", 2], ["updated_at", "2016-02-04 20:57:27.307719"], ["id", 2]]
+  [1m[36m (68.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "444cb4d612a880c3b9d76cbf85018f5f"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Twittah!"], ["api_key", "444cb4d612a880c3b9d76cbf85018f5f"], ["created_at", "2016-02-04 20:57:27.378872"], ["updated_at", "2016-02-04 20:57:27.378872"]]
+  [1m[36m (72.5ms)[0m  [1mcommit transaction[0m
+  [1m[36m (55.1ms)[0m  [1mDROP TABLE "apps"[0m
+  [1m[35m (82.2ms)[0m  CREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (66.1ms)[0m  CREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")
+  [1m[36m (66.4ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (69.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (76.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (106.0ms)[0m  [1mCREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (98.1ms)[0m  [1mCREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [1m[35m (144.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (114.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (115.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (114.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (1.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (206.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203141617')[0m
+  [1m[35m (61.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122175648')
+  [1m[36m (63.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122193703')[0m
+  [1m[35m (111.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122194925')
+  [1m[36m (140.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160126131324')[0m
+  [1m[35m (65.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203123712')
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin Svensson"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$Dmi5XhvPUMKQO.BP7Bm.uOvGYq3s7wr5B7mHUcec.nOpSMik4Lxdq"], ["admin", "t"], ["created_at", "2016-02-04 20:58:57.546144"], ["updated_at", "2016-02-04 20:58:57.546144"]]
+  [1m[36m (76.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test User"], ["email", "testuser@example.com"], ["password_digest", "$2a$10$6O3c0uhNGxqT/UQMZqHfpeNBZqpl585ZvyQSNUDp3gcH/OJ8wP416"], ["created_at", "2016-02-04 20:58:57.702252"], ["updated_at", "2016-02-04 20:58:57.702252"]]
+  [1m[36m (62.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test Usah!!"], ["email", "testuser2@example.com"], ["password_digest", "$2a$10$3sMoXGOhV56mVKABZ6PdR.Oz08xe05S9msVACyT78fQJwO5bYrs82"], ["created_at", "2016-02-04 20:58:57.842139"], ["updated_at", "2016-02-04 20:58:57.842139"]]
+  [1m[36m (66.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "6722f8a7be13a7b069cdc46882ee4222"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "TestApp"], ["api_key", "6722f8a7be13a7b069cdc46882ee4222"], ["user_id", 2], ["created_at", "2016-02-04 20:58:57.952192"], ["updated_at", "2016-02-04 20:58:57.952192"]]
+  [1m[36m (57.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "8471b7182bd49875948825ac4de2b259"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "TestApp2"], ["api_key", "8471b7182bd49875948825ac4de2b259"], ["user_id", 2], ["created_at", "2016-02-04 20:58:58.024647"], ["updated_at", "2016-02-04 20:58:58.024647"]]
+  [1m[36m (75.1ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:59:01 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (1.0ms)[0m  SELECT "apps".* FROM "apps"
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 112ms (Views: 108.1ms | ActiveRecord: 3.0ms)
+  [1m[36m (67.8ms)[0m  [1mDROP TABLE "apps"[0m
+  [1m[35m (76.4ms)[0m  CREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (73.0ms)[0m  CREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")
+  [1m[36m (73.0ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (70.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (73.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (111.2ms)[0m  [1mCREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (146.0ms)[0m  [1mCREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [1m[35m (173.8ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (89.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (69.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (64.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (59.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203141617')[0m
+  [1m[35m (73.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122175648')
+  [1m[36m (60.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122193703')[0m
+  [1m[35m (65.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122194925')
+  [1m[36m (83.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160126131324')[0m
+  [1m[35m (91.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203123712')
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin Svensson"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$.dtHYLEfKYFKnfdKEJouF.B3INHV5NOaylzMAWzfLGTqXOui3GmK6"], ["admin", "t"], ["created_at", "2016-02-04 20:59:41.832827"], ["updated_at", "2016-02-04 20:59:41.832827"]]
+  [1m[36m (67.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test User"], ["email", "testuser@example.com"], ["password_digest", "$2a$10$A6icoBv91TgdfO406XAPp.mHBM1Q5QNnPJ8U4yTnYoxIq/L1ZqxZm"], ["created_at", "2016-02-04 20:59:41.978923"], ["updated_at", "2016-02-04 20:59:41.978923"]]
+  [1m[36m (59.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test Usah!!"], ["email", "testuser2@example.com"], ["password_digest", "$2a$10$jfJ/il3t4dSR0fEP1NRnpOGq1kqCjvZuwfKMd5WRfoMwIiKIt/UiS"], ["created_at", "2016-02-04 20:59:42.119006"], ["updated_at", "2016-02-04 20:59:42.119006"]]
+  [1m[36m (68.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "814380d2bfc95ef01604dfb113eff899"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "TestApp"], ["api_key", "814380d2bfc95ef01604dfb113eff899"], ["user_id", 2], ["created_at", "2016-02-04 20:59:42.229074"], ["updated_at", "2016-02-04 20:59:42.229074"]]
+  [1m[36m (64.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "26c3061dc668acce130b750da6a7db69"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "TestApp2"], ["api_key", "26c3061dc668acce130b750da6a7db69"], ["user_id", 2], ["created_at", "2016-02-04 20:59:42.306113"], ["updated_at", "2016-02-04 20:59:42.306113"]]
+  [1m[36m (72.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "802dc0b549471feeea67fbcaaaf11e8d"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Twittah!"], ["api_key", "802dc0b549471feeea67fbcaaaf11e8d"], ["user_id", 3], ["created_at", "2016-02-04 20:59:42.381737"], ["updated_at", "2016-02-04 20:59:42.381737"]]
+  [1m[36m (76.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "0f790b58cfaa26b9a2072aad9586b067"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Faceboookah"], ["api_key", "0f790b58cfaa26b9a2072aad9586b067"], ["user_id", 3], ["created_at", "2016-02-04 20:59:42.462109"], ["updated_at", "2016-02-04 20:59:42.462109"]]
+  [1m[36m (73.0ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 21:59:55 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps"
+  Rendered users/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 108ms (Views: 105.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 22:00:08 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (1.0ms)[0m  SELECT "apps".* FROM "apps"
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 181ms (Views: 178.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 22:00:27 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps"
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 111ms (Views: 109.0ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/users/2/apps/1" for ::1 at 2016-02-04 22:00:29 +0100
+Processing by AppsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"9Jth8M+ucticnfSJCWopw1QjODoWAYYkpGySp4VNDRsgbsSUMVI9iWwOVXM7KLTmeug6p0ONlmWszuH/LKX2tw==", "user_id"=>"2", "id"=>"1"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  DELETE FROM "apps" WHERE "apps"."id" = ?  [["id", 1]]
+  [1m[36m (85.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 92ms (ActiveRecord: 86.3ms)
+
+
+Started GET "/users/1" for ::1 at 2016-02-04 22:00:29 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "apps"[0m
+  [1m[35mApp Load (0.0ms)[0m  SELECT "apps".* FROM "apps"
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 147ms (Views: 145.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2016-02-04 22:00:32 +0100
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"4Oe/Q2nhyeobjKjAxXvur4yWumGF9QTjyQ8MTbjX9L00Ehonlx2Gu+sfCTr3OXOKol24/NB5FKLBrX8VET8PEQ=="}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2016-02-04 22:00:32 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 144ms (Views: 143.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2016-02-04 22:00:34 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 106ms (Views: 105.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2016-02-04 22:00:39 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zTDmruiL3lcRYqWKPufFxkchUfkVXTi2+0J1ihuWhjwZxUPKFneRBuHxBHAMpVjjaepTZEDRKPfz4AbSsn59kA==", "session"=>{"email"=>"testuser@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "testuser@example.com"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 78ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-02-04 22:00:39 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."user_id" = ? LIMIT 1  [["user_id", 2]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT "apps".* FROM "apps" WHERE "apps"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 117ms (Views: 115.1ms | ActiveRecord: 0.0ms)

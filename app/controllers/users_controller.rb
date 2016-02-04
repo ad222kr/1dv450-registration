@@ -7,6 +7,11 @@ class UsersController < ApplicationController
 
 
   def show
+    if @user.admin?
+      @apps = App.all
+    else
+      @apps = @user.apps
+    end
   end
 
   def new
@@ -22,10 +27,6 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def index
-    @users = User.all
   end
 
   def edit
