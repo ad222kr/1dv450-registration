@@ -7,10 +7,10 @@
 * Rails 4.2.5
 
 ## För att köra appen
-1. ```shell git clone https://github.com/ad222kr/1dv450-registration.git ``` 
-2. ```shell bundle install --without production ``` för att installera gems
-3. ```shell rake db:setup ``` för att skapa databasen och generara test-data
-4. ```shell rails s ```
+1. ```bash git clone https://github.com/ad222kr/1dv450-registration.git ``` 
+2. ```bash bundle install --without production ``` för att installera gems
+3. ```bash rake db:setup ``` för att skapa databasen och generara test-data
+4. ```bash rails s ```
 5. Applikationen hittas nu på localhost:3000
 
 ## Test-data
