@@ -9,7 +9,7 @@
 ## För att köra appen
 ```bash
 git clone https://github.com/ad222kr/1dv450-registration.git 
-bundle install --without production ``` 
+bundle install --without production
 rake db:setup
 rails s 
 ```  
