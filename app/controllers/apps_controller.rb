@@ -1,11 +1,5 @@
 class AppsController < ApplicationController
-  before_action :fetch_app, only: [:show, :destroy]
-
-
-  def show
-
-  end
-
+  before_action :check_if_logged_in, only: [:new, :destroy, :create]
   def new
     @app = App.new
     @user = current_user
@@ -13,8 +7,9 @@ class AppsController < ApplicationController
 
   def create
 
-    @app = App.create(app_params)
-    @app.user = current_user
+    # @app = App.create(app_params)
+    # @app.user = current_user
+    @app = current_user.apps.build(app_params)
 
     if @app.save
       flash[:success] ="Application registered!"
@@ -23,10 +18,6 @@ class AppsController < ApplicationController
       render 'new'
     end
 
-  end
-
-  def index
-    @apps = App.all
   end
 
   def destroy
@@ -39,12 +30,4 @@ class AppsController < ApplicationController
     def app_params
       params.require(:app).permit(:name)
     end
-
-    def fetch_app
-      App.find(params[:id])
-    end
-
-
-
-
 end

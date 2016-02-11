@@ -13,7 +13,7 @@
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings" ,edit_user_path(current_user) %></li>
               <li class="divider"></li>
-              <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+              <li><%= link_to "Log out", logout_path, data: { no_turbolink: true }, method: "delete" %></li>
             </ul>
           </li>
         <% else %>

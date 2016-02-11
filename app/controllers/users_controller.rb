@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :fetch_user, only: [:show, :edit, :update, :check_if_correct_user]
-  before_action :check_if_logged_in, only: [:show, :edit, :update]
+  before_action :fetch_user, only: [:show, :edit, :update]
   before_action :check_if_correct_user, only: [:show, :edit, :update]
   before_action :redirect_to_profile_if_logged_in, only: [:new]
 
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Din profil uppdaterades!"
+      flash[:success] = "Your profile was updated!"
       redirect_to @user
     elsif
       render 'edit'
