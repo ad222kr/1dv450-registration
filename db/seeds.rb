@@ -21,3 +21,5 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 
 @testuser2.apps.create(name: "Twittah!", api_key: "thwittahLOLOLOLOLOL")
 @testuser2.apps.create(name: "Faceboookah", api_key: "facebokahYOYOYO")
+
+Pub.create(name:"Sverres pub")

@@ -1,3 +1,5 @@
+require 'api_constraints'
+
 Rails.application.routes.draw do
 
   root                        'home#index'
@@ -9,10 +11,11 @@ Rails.application.routes.draw do
   resources :apps, only: [:new, :create, :destroy]
   resources :users, except: [:index, :destroy]
 
-  namespace :api, defaults: { format: :json },
-                            constraints: { subdomain: 'api' }, path: '/' do
-
+  namespace :api, defaults: { format: :json } do
+                            #constraints: { subdomain: 'api' }, path: '/'
+    scope module: :v1,
+            constraints: ApiConstraints.new(version: 1, default: true) do
+      resources :pubs
+    end
   end
-
-
 end

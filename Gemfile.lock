@@ -123,6 +123,8 @@ GEM
     rake (10.5.0)
     rdoc (4.2.1)
       json (~> 1.4)
+    responders (2.1.1)
+      railties (>= 4.2.0, < 5.1)
     sass (3.4.21)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -175,6 +177,7 @@ DEPENDENCIES
   puma (= 2.11.1)
   rails (= 4.2.5)
   rails_12factor (= 0.0.2)
+  responders
   sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   spring
