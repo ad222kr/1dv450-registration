@@ -1,5 +1,4 @@
 class Api::V1::PubsController < ApplicationController
-  protect_from_forgery with: :null_session
   respond_to :json
 
   def show
@@ -13,7 +12,15 @@ class Api::V1::PubsController < ApplicationController
     else
       render json: { errors: pub.errors }, status: 422
     end
+  end
 
+  def update
+    pub = Pub.find(params[:id])
+    if pub.update(pub_params)
+      render json: pub, status: 200, location: [:api, pub]
+    else
+      rebder
+    end
   end
 
   private
