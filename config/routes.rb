@@ -2,6 +2,8 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
+  mount Knock::Engine => "/knock"
+
   root                        'home#index'
   get      'signup'      =>   'users#new'
   get      'login'       =>   'sessions#new'
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
                             #constraints: { subdomain: 'api' }, path: '/'
     scope module: :v1,
             constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :pubs
+      resources :pubs, only: [:show, :create, :update, :destroy, :index]
     end
   end
 end

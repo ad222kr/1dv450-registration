@@ -17,26 +17,26 @@ module SessionsHelper
   end
 
   def log_out
-    forget(current_user)
+    forget(current_dev_user)
     session.delete(:user_id)
-    @current_user = nil
+    @current_dev_user = nil
   end
 
-  def current_user
-    # @current_user ||= User.find_by(id: session[:user_id])
+  def current_dev_user
+    # @current_dev_user ||= User.find_by(id: session[:user_id])
     if (user_id = session[:user_id])
-      @current_user ||= User.find_by(id: user_id)
+      @current_dev_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
       if user && user.authenticated?(cookies[:remember_token])
         log_in user
-        @current_user = user
+        @current_dev_user = user
       end
     end
   end
 
   def logged_in?
-    !current_user.nil?
+    !current_dev_user.nil?
   end
 
   def redirect_back_or(default)
@@ -57,14 +57,14 @@ module SessionsHelper
   end
 
   def check_if_correct_user
-    redirect_to root_path unless @user == current_user
+    redirect_to root_path unless @user == current_dev_user
   end
 
   def check_if_admin
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_dev_user.admin?
   end
 
   def redirect_to_profile_if_logged_in
-    redirect_to user_path(current_user) if logged_in?
+    redirect_to user_path(current_dev_user) if logged_in?
   end
 end
