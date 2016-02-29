@@ -1,7 +1,7 @@
 class Api::V1::PubsController < ApplicationController
 
   before_action :authenticate
-  # before_action :restrict_access
+  before_action :restrict_access
   respond_to :json
 
   def index
@@ -43,8 +43,12 @@ class Api::V1::PubsController < ApplicationController
     end
 #
     def restrict_access
-      authenticate_or_request_with_http_token do |token, options|
-        App.exists?(api_key: token)
+      # Cannot send multiple Authorization-headers. Knock uses for end-user
+      # authorization so the API-key is sent via a custom header instead
+      api_key = request.headers['X-Api-Key']
+      @app = App.where(api_key: api_key).first if api_key
+      unless @app
+        head :unauthorized
       end
     end
 

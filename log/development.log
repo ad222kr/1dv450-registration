@@ -20017,3 +20017,751 @@ Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde45
 
 
 Started GET "/assets/application.self-7862a8a8b42407b4741a1adeeea35f0d13ddc4f702ec532adb0674491d296495.js?body=1" for ::1 at 2016-02-24 15:59:48 +0100
+
+
+Started GET "/" for ::1 at 2016-02-29 15:47:04 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (19.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 15227ms (Views: 15186.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/apps.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/custom.self-f2dc152559ffe144953e968e11401fb02a9f6b337c4f47cdafd692a48513a8ec.css?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/pubs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/bootstrap.self-d0e973a52d36a01036265aeefaf2d1ae3499d2cb231a9be3bd846432daf231de.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/apps.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/pubs.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started GET "/assets/application.self-7862a8a8b42407b4741a1adeeea35f0d13ddc4f702ec532adb0674491d296495.js?body=1" for ::1 at 2016-02-29 15:47:22 +0100
+
+
+Started POST "/api/pubs/" for ::1 at 2016-02-29 15:48:16 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{"name"=>"Olearys", "phone_number"=>"123123123", "ASDASDASD"=>"Hejsan, fin pub hejdå"}}
+Can't verify CSRF token authenticity
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:48:36 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/2" for ::1 at 2016-02-29 15:48:38 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"2"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/3" for ::1 at 2016-02-29 15:48:40 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"3"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/4" for ::1 at 2016-02-29 15:48:43 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"4"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  begin transaction
+  [1m[36mUser Exists (8.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (45.5ms)[0m  INSERT INTO "creators" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "testcreator@example.com"], ["password_digest", "$2a$10$rMJtQLPVhuwdxsGnpa7lBOHCzte0cYqKFcEzOH4lRreZbLnfI5e0a"], ["created_at", "2016-02-29 14:54:27.637076"], ["updated_at", "2016-02-29 14:54:27.637076"]]
+  [1m[36m (84.6ms)[0m  [1mcommit transaction[0m
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 15:56:46 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 247ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:57:21 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:57:28 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:57:43 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 67ms (Views: 1.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:59:07 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered text template (0.0ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 26ms (Views: 11.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:59:29 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:59:47 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 15:59:52 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:00:50 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered text template (0.0ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 1.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:01:10 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (1.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered text template (0.0ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 1.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:01:13 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered text template (0.0ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 1.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:02:17 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:02:31 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:02:38 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:02:39 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:03:30 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:03:33 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:03:41 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Exists (0.5ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 62ms (Views: 0.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:03:54 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  Rendered text template (0.0ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:03:58 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  Rendered text template (0.0ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:04:00 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  Rendered text template (0.5ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:04:07 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Exists (0.5ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 14ms (Views: 1.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:04:59 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  Rendered text template (0.0ms)
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:05 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:08 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 42ms (Views: 1.0ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:12 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (1.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 13ms (Views: 1.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:22 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:26 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:28 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:31 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:10:46 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:15:50 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:00 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:03 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:04 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:11 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:13 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:16 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:44 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:47 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:47 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:48 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:16:52 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 16:16:57 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 162ms (Views: 0.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:17:05 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 26ms (Views: 1.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:17:08 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 14ms (Views: 3.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:17:12 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 61ms (Views: 2.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:17:15 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" IS NULL LIMIT 1
+Completed 500 Internal Server Error in 122ms (ActiveRecord: 0.0ms)
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/api/v1/pubs_controller.rb:52:in `restrict_access'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (113.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (82.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (197.2ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:19:42 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Exists (0.5ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "ss"]]
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.0ms)
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/api/v1/pubs_controller.rb:52:in `restrict_access'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (53.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (53.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (113.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:19:48 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Exists (0.5ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 20ms (Views: 1.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:19:55 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "asd"]]
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 1.0ms)
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/api/v1/pubs_controller.rb:52:in `restrict_access'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (53.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (50.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (107.7ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:22:34 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.5ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "asd"]]
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 2.0ms)
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/api/v1/pubs_controller.rb:53:in `restrict_access'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (54.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (53.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (118.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:22:57 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "asd"]]
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 3.0ms)
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/api/v1/pubs_controller.rb:53:in `restrict_access'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (86.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (61.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (133.6ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:23:00 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 38ms (Views: 1.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:23:08 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Load (0.5ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b587bes034aef19aed3d191dd309558a1"]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 1.0ms)
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/api/v1/pubs_controller.rb:53:in `restrict_access'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (55.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (55.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (119.2ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:23:55 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Load (0.5ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b587bes034aef19aed3d191dd309558a1"]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 1.0ms)
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/api/v1/pubs_controller.rb:53:in `restrict_access'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (54.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (51.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (111.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:24:01 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Load (0.5ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b587bes034aef19aed3d191dd309558a1"]]
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 53ms (Views: 1.0ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:24:22 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.5ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587bes034aef19aed3d191dd309558a1"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 27ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:24:27 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.5ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587bes034aef19aed3d191dd309558a1"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 20ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:24:28 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587bes034aef19aed3d191dd309558a1"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:24:40 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.5ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587bes034aef19aed3d191dd309558a1"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:24:43 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:24:47 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.5ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[35mPub Load (0.5ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 67ms (Views: 1.5ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:25:26 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Load (0.5ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 57ms (Views: 1.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 16:25:30 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "asdasd"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.5ms)
