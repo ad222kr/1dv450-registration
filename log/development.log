@@ -20765,3 +20765,467 @@ Processing by Api::V1::PubsController#show as JSON
   [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "asdasd"]]
 Filter chain halted as :restrict_access rendered or redirected
 Completed 401 Unauthorized in 5ms (ActiveRecord: 0.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddReferenceFromCreatorToPub (20160229181112)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "pubs" ADD "creator_id" integer[0m
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mCREATE  INDEX "index_pubs_on_creator_id" ON "pubs" ("creator_id")[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160229181112"]]
+  [1m[36m (76.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_apps_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_apps_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:19:15 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"Aut"=>"admin@admin.com", "session_password"=>"[FILTERED]"}
+Completed 400 Bad Request in 29ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: auth):
+  actionpack (4.2.5) lib/action_controller/metal/strong_parameters.rb:251:in `require'
+  knock (1.4.2) app/controllers/knock/auth_token_controller.rb:25:in `auth_params'
+  knock (1.4.2) app/controllers/knock/auth_token_controller.rb:21:in `user'
+  knock (1.4.2) app/controllers/knock/auth_token_controller.rb:13:in `authenticate!'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.5) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.5) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (74.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (100.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (201.9ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:20:46 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 184ms (Views: 0.0ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:02 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 77ms (Views: 0.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:03 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 80ms (Views: 0.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:03 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 77ms (Views: 0.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:04 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 77ms (Views: 0.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:04 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 78ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:05 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 77ms (Views: 0.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:05 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 78ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:06 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 78ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:06 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 78ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:07 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 78ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:07 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 77ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:08 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 77ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:10 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 77ms (Views: 0.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:21:12 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 78ms (Views: 0.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/knock/auth_token" for ::1 at 2016-02-29 19:21:48 +0100
+
+ActionController::RoutingError (No route matches [GET] "/knock/auth_token"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (107.3ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (194.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (103.1ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:22:27 +0100
+Processing by Knock::AuthTokenController#create as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: auth):
+  actionpack (4.2.5) lib/action_controller/metal/strong_parameters.rb:251:in `require'
+  knock (1.4.2) app/controllers/knock/auth_token_controller.rb:25:in `auth_params'
+  knock (1.4.2) app/controllers/knock/auth_token_controller.rb:21:in `user'
+  knock (1.4.2) app/controllers/knock/auth_token_controller.rb:13:in `authenticate!'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.5) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.5) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (52.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (111.1ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-02-29 19:22:33 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 78ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 19:23:24 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 19:23:33 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 19:23:45 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 19:24:07 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 11ms (Views: 1.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-02-29 19:24:41 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 0.0ms | ActiveRecord: 1.0ms)
