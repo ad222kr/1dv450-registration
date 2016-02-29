@@ -1,4 +1,8 @@
-== README
+## Hur man använder API:t
+1. Registrera dig som användare i registrerings-applikationen och generera en
+API-nyckel för din applikation
+2. Blabla hur man fixar JWT-token
+3. BLABLA vilka headers som behövs i anropen
 
 ## Registrerings-applikation
 
@@ -8,12 +12,12 @@
 
 ## För att köra appen
 ```bash
-git clone https://github.com/ad222kr/1dv450-registration.git 
+git clone https://github.com/ad222kr/1dv450-registration.git
 bundle install --without production
 rake db:setup
-rails s 
-```  
-Applikationen hittas nu på localhost:3000  
+rails s
+```
+Applikationen hittas nu på localhost:3000
 
 ## Test-data
 | email | Lösenord |

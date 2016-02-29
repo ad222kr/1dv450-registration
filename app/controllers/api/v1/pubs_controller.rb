@@ -15,6 +15,7 @@ class Api::V1::PubsController < ApplicationController
 
   def create
     pub = Pub.new(pub_params)
+    pub.creator = current_user
     if pub.save
       render json: pub, status: 201, location: [:api, pub]
     else
