@@ -21524,3 +21524,27 @@ Completed 201 Created in 171ms (Views: 23.1ms | ActiveRecord: 120.1ms)
   [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
   [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 6]]
   [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+
+
+Started POST "/api/pubs" for ::1 at 2016-02-29 20:14:43 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{"name"=>"CreatorsFirstPub", "phone_number"=>"TjenaPub123123", "description"=>"ASDASDASDASD"}}
+Can't verify CSRF token authenticity
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "creator_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "CreatorsFirstPub"], ["phone_number", "TjenaPub123123"], ["description", "ASDASDASDASD"], ["creator_id", 1], ["created_at", "2016-02-29 19:14:43.463949"], ["updated_at", "2016-02-29 19:14:43.463949"]]
+  [1m[36m (112.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 147ms (Views: 1.0ms | ActiveRecord: 115.4ms)
+
+
+Started POST "/api/pubs" for ::1 at 2016-02-29 20:15:08 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{"name"=>"Cårhuset", "phone_number"=>"0101010101", "description"=>"Fin pub billig öl hejdå"}}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "creator_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Cårhuset"], ["phone_number", "0101010101"], ["description", "Fin pub billig öl hejdå"], ["creator_id", 1], ["created_at", "2016-02-29 19:15:08.400638"], ["updated_at", "2016-02-29 19:15:08.400638"]]
+  [1m[35m (70.1ms)[0m  commit transaction
+Completed 201 Created in 78ms (Views: 1.0ms | ActiveRecord: 71.1ms)

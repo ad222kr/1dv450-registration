@@ -46,7 +46,7 @@ class Api::V1::PubsController < ApplicationController
     def restrict_access
       # Cannot send multiple Authorization-headers. Knock uses for end-user
       # authorization so the API-key is sent via a custom header instead
-      api_key = request.headers['X-Api-Key']
+      api_key = request.headers['Api-Key']
       @app = App.where(api_key: api_key).first if api_key
       unless @app
         render json: { errors: { developer_error: "The API-key is invalid", user_error: "Something went wrong" } }, status: :unauthorized
