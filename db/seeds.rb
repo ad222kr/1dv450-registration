@@ -16,11 +16,9 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 
 
 
-# @testuser.apps.create(name: "TestApp", api_key: "justATestApiKeyOne")
-# @testuser.apps.create(name: "TestApp2", api_key: "justATestApiKeyTwoLol")
+@testuser.apps << App.create(name: "TestApp", api_key: "justATestApiKeyOne")
+@testuser2.apps << App.create(name: "TestApp2", api_key: "justATestApiKeyTwoLol")
 
-# @testuser2.apps.create(name: "Twittah!", api_key: "thwittahLOLOLOLOLOL")
-# @testuser2.apps.create(name: "Faceboookah", api_key: "facebokahYOYOYO")
 
 Pub.create(name: "Sverres pub")
 Creator.create(email: "testcreator@example.com", password: "testcreatorpassword")

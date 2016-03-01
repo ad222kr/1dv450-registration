@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229181112) do
+ActiveRecord::Schema.define(version: 20160301160521) do
 
   create_table "apps", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20160229181112) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.float    "longitude"
+    t.float    "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pubs", force: :cascade do |t|
     t.string   "name"
     t.string   "phone_number"
@@ -37,9 +44,25 @@ ActiveRecord::Schema.define(version: 20160229181112) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "creator_id"
+    t.integer  "position_id"
   end
 
   add_index "pubs", ["creator_id"], name: "index_pubs_on_creator_id"
+  add_index "pubs", ["position_id"], name: "index_pubs_on_position_id"
+
+  create_table "pubs_tags", force: :cascade do |t|
+    t.integer "pub_id"
+    t.integer "tag_id"
+  end
+
+  add_index "pubs_tags", ["pub_id"], name: "index_pubs_tags_on_pub_id"
+  add_index "pubs_tags", ["tag_id"], name: "index_pubs_tags_on_tag_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
