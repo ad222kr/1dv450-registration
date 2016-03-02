@@ -1,16 +1,17 @@
-class Api::V1::PubsController < ApplicationController
+class Api::V1::PubsController < Api::V1::ApiBaseController
 
-  before_action :authenticate
+  skip_before_action :authenticate, only: [:index, :show]
   before_action :restrict_access
   respond_to :json
 
   def index
-    respond_with Pubs.all
+    respond_with Pub.all
   end
 
 
   def show
-    respond_with Pub.find(params[:id])
+    @pub = Pub.find(params[:id])
+    respond_with @pub, status: :ok
   end
 
   def create

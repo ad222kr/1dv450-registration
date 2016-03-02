@@ -20,6 +20,10 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 @testuser2.apps << App.create(name: "TestApp2", api_key: "justATestApiKeyTwoLol")
 
 
-Pub.create(name: "Sverres pub")
-Creator.create(email: "testcreator@example.com", password: "testcreatorpassword")
+@pub = Pub.create(name: "Sverres pub", phone_number: "0202002", description: "asdasdasdasd")
+
+@pub.creator = Creator.create(email: "testcreator@example.com", password: "testcreatorpassword")
+@pub.position = Position.create(address: "Skräddaretorpsvägen 14, Kalmar")
+@pub.save
+@pub.tags << Tag.new(name: "Skön stämning!")
 

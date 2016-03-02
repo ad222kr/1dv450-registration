@@ -17,7 +17,18 @@ Rails.application.routes.draw do
                             #constraints: { subdomain: 'api' }, path: '/'
     scope module: :v1,
             constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :pubs, only: [:show, :create, :update, :destroy, :index]
+      resources :pubs, only: [:show, :create, :update, :destroy, :index] do
+        resources :positions, only: [:index]
+        resources :tags, only: [:index]
+      end
+
+      resources :tags, only: [:show, :create, :update, :destroy, :index] do
+        resources :pubs, only: [:index]
+      end
+
+      resources :positions, only: [:index, :show]
+
+      resources
     end
   end
 end
