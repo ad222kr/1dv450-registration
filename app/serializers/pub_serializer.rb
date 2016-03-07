@@ -9,7 +9,7 @@ class PubSerializer < ActiveModel::Serializer
       self: api_pub_path(object.id),
       tags: api_pub_tags_path(object.id),
       creator: api_creator_path(object.id),
-      # position: api_pub_position_path(object.id),
+      position: api_pub_position_path(object.id),
     }
   end
 
