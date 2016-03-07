@@ -5,7 +5,7 @@ class TagSerializer < ActiveModel::Serializer
   def links
     {
       self: api_tag_path(object.id),
-      pubs: api_pub_path(object.pub.id)
+      pubs: api_tag_pubs_path(object.id)
     }
   end
 end

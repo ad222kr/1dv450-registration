@@ -26155,3 +26155,1023 @@ Processing by Api::V1::PositionsController#index as JSON
   [1m[35mPosition Load (1.0ms)[0m  SELECT "positions".* FROM "positions"
   [1m[36mPub Load (1.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 1]]
 Completed 200 OK in 155ms (Views: 76.6ms | ActiveRecord: 8.0ms)
+  [1m[36m (117.6ms)[0m  [1mCREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (86.4ms)[0m  [1mCREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [1m[35m (90.9ms)[0m  CREATE TABLE "creators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (90.1ms)[0m  [1mCREATE TABLE "positions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "longitude" float, "latitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address" varchar) [0m
+  [1m[35m (107.3ms)[0m  CREATE TABLE "pubs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone_number" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "creator_id" integer, "position_id" integer) 
+  [1m[36m (99.4ms)[0m  [1mCREATE  INDEX "index_pubs_on_creator_id" ON "pubs" ("creator_id")[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+
+  [1m[36m (124.2ms)[0m  [1mCREATE  INDEX "index_pubs_on_position_id" ON "pubs" ("position_id")[0m
+  [1m[35m (80.1ms)[0m  CREATE TABLE "pubs_tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pub_id" integer, "tag_id" integer) 
+  [1m[36m (91.1ms)[0m  [1mCREATE  INDEX "index_pubs_tags_on_pub_id" ON "pubs_tags" ("pub_id")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+
+  [1m[36m (106.1ms)[0m  [1mCREATE  INDEX "index_pubs_tags_on_tag_id" ON "pubs_tags" ("tag_id")[0m
+  [1m[35m (81.2ms)[0m  CREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (89.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (90.0ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (96.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (100.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (81.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160302140905')
+  [1m[36m (100.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122175648')[0m
+  [1m[35m (82.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122193703')
+  [1m[36m (110.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122194925')[0m
+  [1m[35m (106.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160126131324')
+  [1m[36m (93.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203123712')[0m
+  [1m[35m (73.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203141617')
+  [1m[36m (93.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160223132101')[0m
+  [1m[35m (73.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160224141324')
+  [1m[36m (91.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160229181112')[0m
+  [1m[35m (91.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301152851')
+  [1m[36m (92.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301153448')[0m
+  [1m[35m (99.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301153753')
+  [1m[36m (83.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301160521')[0m
+  [1m[35m (104.2ms)[0m  CREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (181.2ms)[0m  CREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")
+  [1m[36m (186.4ms)[0m  [1mCREATE TABLE "creators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (137.2ms)[0m  CREATE TABLE "positions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "longitude" float, "latitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address" varchar) 
+  [1m[36m (83.1ms)[0m  [1mCREATE TABLE "pubs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone_number" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "creator_id" integer, "position_id" integer) [0m
+  [1m[35m (88.5ms)[0m  CREATE  INDEX "index_pubs_on_creator_id" ON "pubs" ("creator_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+[0m
+  [1m[35m (92.2ms)[0m  CREATE  INDEX "index_pubs_on_position_id" ON "pubs" ("position_id")
+  [1m[36m (89.1ms)[0m  [1mCREATE TABLE "pubs_tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pub_id" integer, "tag_id" integer) [0m
+  [1m[35m (83.3ms)[0m  CREATE  INDEX "index_pubs_tags_on_pub_id" ON "pubs_tags" ("pub_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+[0m
+  [1m[35m (80.1ms)[0m  CREATE  INDEX "index_pubs_tags_on_tag_id" ON "pubs_tags" ("tag_id")
+  [1m[36m (115.1ms)[0m  [1mCREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (82.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (84.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (86.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (77.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (82.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160302140905')[0m
+  [1m[35m (105.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122175648')
+  [1m[36m (69.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122193703')[0m
+  [1m[35m (108.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122194925')
+  [1m[36m (91.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160126131324')[0m
+  [1m[35m (83.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203123712')
+  [1m[36m (107.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203141617')[0m
+  [1m[35m (116.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160223132101')
+  [1m[36m (93.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160224141324')[0m
+  [1m[35m (89.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160229181112')
+  [1m[36m (73.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301152851')[0m
+  [1m[35m (75.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301153448')
+  [1m[36m (73.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301153753')[0m
+  [1m[35m (92.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301160521')
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin Svensson"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$m1z/5jJE8DS7q2f1H0pQR.zqWKVL8CsV9bFdVyYn3rEz1SwWht0Ti"], ["admin", "t"], ["created_at", "2016-03-07 22:54:56.796498"], ["updated_at", "2016-03-07 22:54:56.796498"]]
+  [1m[36m (90.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test User"], ["email", "testuser@example.com"], ["password_digest", "$2a$10$jQ3HpaIeF4p2VJCSJP3h9OtYbotGj3VM3Hj3jOIralJj3w0k0vSva"], ["created_at", "2016-03-07 22:54:56.966962"], ["updated_at", "2016-03-07 22:54:56.966962"]]
+  [1m[36m (140.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test Usah!!"], ["email", "testuser2@example.com"], ["password_digest", "$2a$10$4InMR7Z0Owzw2/KOmyiwHuxHVTegyiQaMs.VvTStbWBysiw1gLqti"], ["created_at", "2016-03-07 22:54:57.187006"], ["updated_at", "2016-03-07 22:54:57.187006"]]
+  [1m[36m (102.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "e9d6f4175d5fceb8b601fa7fde0252e1"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "TestApp"], ["api_key", "e9d6f4175d5fceb8b601fa7fde0252e1"], ["created_at", "2016-03-07 22:54:57.343456"], ["updated_at", "2016-03-07 22:54:57.343456"]]
+  [1m[36m (81.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?[0m  [["user_id", 2], ["updated_at", "2016-03-07 22:54:57.494455"], ["id", 1]]
+  [1m[35m (82.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "0eb22651ca97e23f6aff230de985d4df"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "TestApp2"], ["api_key", "0eb22651ca97e23f6aff230de985d4df"], ["created_at", "2016-03-07 22:54:57.580085"], ["updated_at", "2016-03-07 22:54:57.580085"]]
+  [1m[35m (96.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  UPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?  [["user_id", 3], ["updated_at", "2016-03-07 22:54:57.680435"], ["id", 2]]
+  [1m[36m (63.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sverres pub"], ["phone_number", "0202002123"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:54:57.783504"], ["updated_at", "2016-03-07 22:54:57.783504"]]
+  [1m[35m (68.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Alex pub"], ["phone_number", "0202002444"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:54:57.854552"], ["updated_at", "2016-03-07 22:54:57.854552"]]
+  [1m[36m (64.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mattias pub"], ["phone_number", "020200442"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:54:57.921597"], ["updated_at", "2016-03-07 22:54:57.921597"]]
+  [1m[35m (81.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Jossans pub"], ["phone_number", "020200222"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:54:58.005287"], ["updated_at", "2016-03-07 22:54:58.005287"]]
+  [1m[36m (67.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Nalles pub"], ["phone_number", "0202055502"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:54:58.074389"], ["updated_at", "2016-03-07 22:54:58.074389"]]
+  [1m[35m (78.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "creators" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "testcreator@example.com"], ["password_digest", "$2a$10$nZiP4DtA2dxYZ1RqFLgZn.pRvFNNrnzieMV3uTJpnjvqUQHJ/F/1O"], ["created_at", "2016-03-07 22:54:58.239148"], ["updated_at", "2016-03-07 22:54:58.239148"]]
+  [1m[36m (114.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "creators" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "testcreator2@example.com"], ["password_digest", "$2a$10$tKuLNhU4ox80q7gdHDSJJel1vtSwfqFG3c6faeh6nAkA5npYPMtL."], ["created_at", "2016-03-07 22:54:58.434158"], ["updated_at", "2016-03-07 22:54:58.434158"]]
+  [1m[35m (84.2ms)[0m  commit transaction
+  [1m[36m (136.6ms)[0m  [1mCREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (91.8ms)[0m  [1mCREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [1m[35m (90.1ms)[0m  CREATE TABLE "creators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (159.8ms)[0m  [1mCREATE TABLE "positions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "longitude" float, "latitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address" varchar) [0m
+  [1m[35m (81.4ms)[0m  CREATE TABLE "pubs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone_number" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "creator_id" integer, "position_id" integer) 
+  [1m[36m (83.1ms)[0m  [1mCREATE  INDEX "index_pubs_on_creator_id" ON "pubs" ("creator_id")[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+
+  [1m[36m (78.7ms)[0m  [1mCREATE  INDEX "index_pubs_on_position_id" ON "pubs" ("position_id")[0m
+  [1m[35m (81.3ms)[0m  CREATE TABLE "pubs_tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pub_id" integer, "tag_id" integer) 
+  [1m[36m (78.1ms)[0m  [1mCREATE  INDEX "index_pubs_tags_on_pub_id" ON "pubs_tags" ("pub_id")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+
+  [1m[36m (78.1ms)[0m  [1mCREATE  INDEX "index_pubs_tags_on_tag_id" ON "pubs_tags" ("tag_id")[0m
+  [1m[35m (93.2ms)[0m  CREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (78.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (93.5ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (112.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (62.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (106.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160302140905')
+  [1m[36m (87.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122175648')[0m
+  [1m[35m (80.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122193703')
+  [1m[36m (88.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122194925')[0m
+  [1m[35m (125.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160126131324')
+  [1m[36m (98.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203123712')[0m
+  [1m[35m (99.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203141617')
+  [1m[36m (190.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160223132101')[0m
+  [1m[35m (161.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160224141324')
+  [1m[36m (207.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160229181112')[0m
+  [1m[35m (90.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301152851')
+  [1m[36m (75.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301153448')[0m
+  [1m[35m (91.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301153753')
+  [1m[36m (118.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301160521')[0m
+  [1m[35m (139.9ms)[0m  CREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (119.7ms)[0m  CREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")
+  [1m[36m (75.8ms)[0m  [1mCREATE TABLE "creators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (93.8ms)[0m  CREATE TABLE "positions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "longitude" float, "latitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address" varchar) 
+  [1m[36m (98.9ms)[0m  [1mCREATE TABLE "pubs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone_number" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "creator_id" integer, "position_id" integer) [0m
+  [1m[35m (80.9ms)[0m  CREATE  INDEX "index_pubs_on_creator_id" ON "pubs" ("creator_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+[0m
+  [1m[35m (117.6ms)[0m  CREATE  INDEX "index_pubs_on_position_id" ON "pubs" ("position_id")
+  [1m[36m (122.3ms)[0m  [1mCREATE TABLE "pubs_tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pub_id" integer, "tag_id" integer) [0m
+  [1m[35m (93.8ms)[0m  CREATE  INDEX "index_pubs_tags_on_pub_id" ON "pubs_tags" ("pub_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+[0m
+  [1m[35m (91.1ms)[0m  CREATE  INDEX "index_pubs_tags_on_tag_id" ON "pubs_tags" ("tag_id")
+  [1m[36m (76.8ms)[0m  [1mCREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (101.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (109.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (104.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (97.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (73.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160302140905')[0m
+  [1m[35m (119.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122175648')
+  [1m[36m (87.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122193703')[0m
+  [1m[35m (74.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122194925')
+  [1m[36m (93.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160126131324')[0m
+  [1m[35m (78.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203123712')
+  [1m[36m (62.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203141617')[0m
+  [1m[35m (78.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160223132101')
+  [1m[36m (95.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160224141324')[0m
+  [1m[35m (74.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160229181112')
+  [1m[36m (92.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301152851')[0m
+  [1m[35m (102.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301153448')
+  [1m[36m (79.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301153753')[0m
+  [1m[35m (95.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301160521')
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin Svensson"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$aWeWF1gVBPORoRUoL1NAmu0ZMjuCOpItVX8Yn4IymhiG/7Sk0jWOG"], ["admin", "t"], ["created_at", "2016-03-07 22:56:15.486573"], ["updated_at", "2016-03-07 22:56:15.486573"]]
+  [1m[36m (91.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test User"], ["email", "testuser@example.com"], ["password_digest", "$2a$10$OSiHyOybZ.kvhmVJizGcHOjkBBHhpI.XfVxbHVEAXOtsS01wZmX9K"], ["created_at", "2016-03-07 22:56:15.671738"], ["updated_at", "2016-03-07 22:56:15.671738"]]
+  [1m[36m (88.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Test Usah!!"], ["email", "testuser2@example.com"], ["password_digest", "$2a$10$HhOPcX9mgDW5ue5kiCZSAOQhZ27lVkXis.pZzKgP4JlWBhAelo8ZO"], ["created_at", "2016-03-07 22:56:15.835662"], ["updated_at", "2016-03-07 22:56:15.835662"]]
+  [1m[36m (84.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "6612109e2b01b41db0a7fc9acc48d7e1"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "TestApp"], ["api_key", "6612109e2b01b41db0a7fc9acc48d7e1"], ["created_at", "2016-03-07 22:56:15.959746"], ["updated_at", "2016-03-07 22:56:15.959746"]]
+  [1m[36m (78.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?[0m  [["user_id", 2], ["updated_at", "2016-03-07 22:56:16.061814"], ["id", 1]]
+  [1m[35m (79.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mApp Exists (1.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "4aab17338fe80d4980bcc2afa4aa49a1"]]
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "TestApp2"], ["api_key", "4aab17338fe80d4980bcc2afa4aa49a1"], ["created_at", "2016-03-07 22:56:16.144869"], ["updated_at", "2016-03-07 22:56:16.144869"]]
+  [1m[35m (47.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?  [["user_id", 3], ["updated_at", "2016-03-07 22:56:16.194904"], ["id", 2]]
+  [1m[36m (55.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sverres pub"], ["phone_number", "0202002123"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:56:16.268952"], ["updated_at", "2016-03-07 22:56:16.268952"]]
+  [1m[35m (48.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Alex pub"], ["phone_number", "0202002444"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:56:16.318985"], ["updated_at", "2016-03-07 22:56:16.318985"]]
+  [1m[36m (64.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mattias pub"], ["phone_number", "020200442"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:56:16.386657"], ["updated_at", "2016-03-07 22:56:16.386657"]]
+  [1m[35m (81.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Jossans pub"], ["phone_number", "020200222"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:56:16.470989"], ["updated_at", "2016-03-07 22:56:16.470989"]]
+  [1m[36m (119.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Nalles pub"], ["phone_number", "0202055502"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:56:16.594257"], ["updated_at", "2016-03-07 22:56:16.594257"]]
+  [1m[35m (66.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "creators" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "testcreator@example.com"], ["password_digest", "$2a$10$/SCxRmHLrNkynvdP7KqhO..R0PZ3L/BgVcwABah4xTJ5Fq3ucMSQq"], ["created_at", "2016-03-07 22:56:16.745344"], ["updated_at", "2016-03-07 22:56:16.745344"]]
+  [1m[36m (80.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "creators" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "testcreator2@example.com"], ["password_digest", "$2a$10$B7xUG9R6yde7RQuD9CNFzugvCNt11RfxC.gjh9ta.oydzcXvUSGiW"], ["created_at", "2016-03-07 22:56:16.903140"], ["updated_at", "2016-03-07 22:56:16.903140"]]
+  [1m[35m (56.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["address", "Skräddaretorpsvägen 14, Kalmar"], ["latitude", 56.6859614], ["longitude", 16.3350877], ["created_at", "2016-03-07 22:56:17.145385"], ["updated_at", "2016-03-07 22:56:17.145385"]]
+  [1m[36m (137.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["address", "Gröndalsvägen 27, Kalmar"], ["latitude", 56.6788981], ["longitude", 16.3559801], ["created_at", "2016-03-07 22:56:17.417570"], ["updated_at", "2016-03-07 22:56:17.417570"]]
+  [1m[35m (64.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["address", "Skräddaretorpsvägen 6, Kalmar"], ["latitude", 56.68398389999999], ["longitude", 16.337638], ["created_at", "2016-03-07 22:56:17.598439"], ["updated_at", "2016-03-07 22:56:17.598439"]]
+  [1m[36m (69.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["address", "Södra Långgatan 6, Kalmar"], ["latitude", 56.6623256], ["longitude", 16.3624382], ["created_at", "2016-03-07 22:56:17.798208"], ["updated_at", "2016-03-07 22:56:17.798208"]]
+  [1m[35m (70.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["address", "Skräddaretorpsvägen 10, Kalmar"], ["latitude", 56.6850544], ["longitude", 16.3362975], ["created_at", "2016-03-07 22:56:17.974311"], ["updated_at", "2016-03-07 22:56:17.974311"]]
+  [1m[36m (93.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Skön stämning!"], ["created_at", "2016-03-07 22:56:18.097099"], ["updated_at", "2016-03-07 22:56:18.097099"]]
+  [1m[35m (54.7ms)[0m  commit transaction
+  [1m[36m (15.6ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Skitdålig"], ["created_at", "2016-03-07 22:56:18.169471"], ["updated_at", "2016-03-07 22:56:18.169471"]]
+  [1m[36m (62.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Mysig!"], ["created_at", "2016-03-07 22:56:18.231975"], ["updated_at", "2016-03-07 22:56:18.231975"]]
+  [1m[35m (46.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)  [["pub_id", 1], ["tag_id", 1]]
+  [1m[36m (69.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)[0m  [["pub_id", 1], ["tag_id", 3]]
+  [1m[35m (57.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)  [["pub_id", 2], ["tag_id", 2]]
+  [1m[36m (64.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)[0m  [["pub_id", 3], ["tag_id", 1]]
+  [1m[35m (78.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)  [["pub_id", 4], ["tag_id", 3]]
+  [1m[36m (78.1ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for ::1 at 2016-03-07 23:57:03 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (19.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 2058ms (Views: 2025.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/api/v1/api_base.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/api/v1/creators.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/api/v1/positions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/api/v1/tags.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/apps.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/pubs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/custom.self-9492ae02efa91519338f7fbd0a6aa752dc249e4bd13fbd453cfdbdefab8165cc.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/bootstrap.self-d0e973a52d36a01036265aeefaf2d1ae3499d2cb231a9be3bd846432daf231de.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/api/v1/api_base.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/api/v1/creators.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/api/v1/positions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/api/v1/tags.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/apps.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/pubs.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+
+
+Started GET "/assets/application.self-7862a8a8b42407b4741a1adeeea35f0d13ddc4f702ec532adb0674491d296495.js?body=1" for ::1 at 2016-03-07 23:57:06 +0100
+  [1m[36m (86.1ms)[0m  [1mDROP TABLE "apps"[0m
+  [1m[35m (116.6ms)[0m  CREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (73.7ms)[0m  CREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")
+  [1m[36m (82.2ms)[0m  [1mDROP TABLE "creators"[0m
+  [1m[35m (83.3ms)[0m  CREATE TABLE "creators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (84.8ms)[0m  [1mDROP TABLE "positions"[0m
+  [1m[35m (73.4ms)[0m  CREATE TABLE "positions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "longitude" float, "latitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address" varchar) 
+  [1m[36m (90.3ms)[0m  [1mDROP TABLE "pubs"[0m
+  [1m[35m (74.2ms)[0m  CREATE TABLE "pubs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone_number" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "creator_id" integer, "position_id" integer) 
+  [1m[36m (82.3ms)[0m  [1mCREATE  INDEX "index_pubs_on_creator_id" ON "pubs" ("creator_id")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+
+  [1m[36m (83.2ms)[0m  [1mCREATE  INDEX "index_pubs_on_position_id" ON "pubs" ("position_id")[0m
+  [1m[35m (98.2ms)[0m  DROP TABLE "pubs_tags"
+  [1m[36m (91.6ms)[0m  [1mCREATE TABLE "pubs_tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pub_id" integer, "tag_id" integer) [0m
+  [1m[35m (99.3ms)[0m  CREATE  INDEX "index_pubs_tags_on_pub_id" ON "pubs_tags" ("pub_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+[0m
+  [1m[35m (89.2ms)[0m  CREATE  INDEX "index_pubs_tags_on_tag_id" ON "pubs_tags" ("tag_id")
+  [1m[36m (91.3ms)[0m  [1mDROP TABLE "tags"[0m
+  [1m[35m (91.6ms)[0m  CREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (90.1ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (86.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (90.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (152.2ms)[0m  [1mCREATE TABLE "apps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "api_key" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (71.3ms)[0m  [1mCREATE  INDEX "index_apps_on_user_id" ON "apps" ("user_id")[0m
+  [1m[35m (76.1ms)[0m  CREATE TABLE "creators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (97.1ms)[0m  [1mCREATE TABLE "positions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "longitude" float, "latitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address" varchar) [0m
+  [1m[35m (100.7ms)[0m  CREATE TABLE "pubs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone_number" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "creator_id" integer, "position_id" integer) 
+  [1m[36m (100.4ms)[0m  [1mCREATE  INDEX "index_pubs_on_creator_id" ON "pubs" ("creator_id")[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_on_creator_id' AND type='index'
+
+  [1m[36m (97.4ms)[0m  [1mCREATE  INDEX "index_pubs_on_position_id" ON "pubs" ("position_id")[0m
+  [1m[35m (115.5ms)[0m  CREATE TABLE "pubs_tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pub_id" integer, "tag_id" integer) 
+  [1m[36m (83.5ms)[0m  [1mCREATE  INDEX "index_pubs_tags_on_pub_id" ON "pubs_tags" ("pub_id")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pubs_tags_on_pub_id' AND type='index'
+
+  [1m[36m (80.2ms)[0m  [1mCREATE  INDEX "index_pubs_tags_on_tag_id" ON "pubs_tags" ("tag_id")[0m
+  [1m[35m (82.2ms)[0m  CREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (82.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') [0m
+  [1m[35m (85.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (133.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (129.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (81.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160302140905')
+  [1m[36m (84.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122175648')[0m
+  [1m[35m (75.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160122193703')
+  [1m[36m (82.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160122194925')[0m
+  [1m[35m (116.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160126131324')
+  [1m[36m (75.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160203123712')[0m
+  [1m[35m (74.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160203141617')
+  [1m[36m (69.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160223132101')[0m
+  [1m[35m (80.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160224141324')
+  [1m[36m (75.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160229181112')[0m
+  [1m[35m (73.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301152851')
+  [1m[36m (69.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301153448')[0m
+  [1m[35m (97.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160301153753')
+  [1m[36m (71.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160301160521')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.com') LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Admin Svensson"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$Ndy/Yq0yQ/q4gl.opDUHd.ixVUD5Ipz5ZeDMSpY7NO/zBW1lIKdH2"], ["admin", "t"], ["created_at", "2016-03-07 22:57:54.348681"], ["updated_at", "2016-03-07 22:57:54.348681"]]
+  [1m[35m (67.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser@example.com') LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Test User"], ["email", "testuser@example.com"], ["password_digest", "$2a$10$5wH0mqPNSOSALREaaMZ7Wewb32xlnkAxHa7/550Rk25VwTNb.4JRW"], ["created_at", "2016-03-07 22:57:54.499782"], ["updated_at", "2016-03-07 22:57:54.499782"]]
+  [1m[35m (91.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('testuser2@example.com') LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Test Usah!!"], ["email", "testuser2@example.com"], ["password_digest", "$2a$10$yhmrU6BAvnVjsVmrISWiYOb8ktS.Y9SZsXU2x.tYTA6VVuWZ8nu5S"], ["created_at", "2016-03-07 22:57:54.673898"], ["updated_at", "2016-03-07 22:57:54.673898"]]
+  [1m[35m (81.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mApp Exists (0.0ms)[0m  SELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "TestApp"], ["api_key", "b8b63be5043744001d9ae0a793b7a067"], ["created_at", "2016-03-07 22:57:54.828002"], ["updated_at", "2016-03-07 22:57:54.828002"]]
+  [1m[35m (91.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?  [["user_id", 2], ["updated_at", "2016-03-07 22:57:54.955086"], ["id", 1]]
+  [1m[36m (91.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mApp Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "apps" WHERE "apps"."api_key" = ? LIMIT 1[0m  [["api_key", "420543d7d0ac999f21a80b36fd211c3e"]]
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "apps" ("name", "api_key", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "TestApp2"], ["api_key", "420543d7d0ac999f21a80b36fd211c3e"], ["created_at", "2016-03-07 22:57:55.049150"], ["updated_at", "2016-03-07 22:57:55.049150"]]
+  [1m[36m (87.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "apps" SET "user_id" = ?, "updated_at" = ? WHERE "apps"."id" = ?[0m  [["user_id", 3], ["updated_at", "2016-03-07 22:57:55.140212"], ["id", 2]]
+  [1m[35m (90.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Sverres pub"], ["phone_number", "0202002123"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:57:55.250283"], ["updated_at", "2016-03-07 22:57:55.250283"]]
+  [1m[36m (72.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Alex pub"], ["phone_number", "0202002444"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:57:55.326335"], ["updated_at", "2016-03-07 22:57:55.326335"]]
+  [1m[35m (78.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mattias pub"], ["phone_number", "020200442"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:57:55.406387"], ["updated_at", "2016-03-07 22:57:55.406387"]]
+  [1m[36m (81.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jossans pub"], ["phone_number", "020200222"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:57:55.490443"], ["updated_at", "2016-03-07 22:57:55.490443"]]
+  [1m[35m (81.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pubs" ("name", "phone_number", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Nalles pub"], ["phone_number", "0202055502"], ["description", "asdasdasdasd"], ["created_at", "2016-03-07 22:57:55.573499"], ["updated_at", "2016-03-07 22:57:55.573499"]]
+  [1m[36m (90.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "creators" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "testcreator@example.com"], ["password_digest", "$2a$10$jHVSFTtGoi0waRpO8hz.ZOjT1wfrlJcA0BMW71HVsWaefFC1ubBYe"], ["created_at", "2016-03-07 22:57:55.762626"], ["updated_at", "2016-03-07 22:57:55.762626"]]
+  [1m[35m (83.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "creators" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "testcreator2@example.com"], ["password_digest", "$2a$10$F0SsBAlgWFaheclOmbOtLO/y2eWL4SwSf0icLOQQ4Lovvqe99xdPm"], ["created_at", "2016-03-07 22:57:55.923732"], ["updated_at", "2016-03-07 22:57:55.923732"]]
+  [1m[36m (107.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["address", "Skräddaretorpsvägen 14, Kalmar"], ["latitude", 56.6859614], ["longitude", 16.3350877], ["created_at", "2016-03-07 22:57:56.142879"], ["updated_at", "2016-03-07 22:57:56.142879"]]
+  [1m[35m (85.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["address", "Gröndalsvägen 27, Kalmar"], ["latitude", 56.6788981], ["longitude", 16.3559801], ["created_at", "2016-03-07 22:57:56.319997"], ["updated_at", "2016-03-07 22:57:56.319997"]]
+  [1m[36m (101.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["address", "Skräddaretorpsvägen 6, Kalmar"], ["latitude", 56.68398389999999], ["longitude", 16.337638], ["created_at", "2016-03-07 22:57:56.534143"], ["updated_at", "2016-03-07 22:57:56.534143"]]
+  [1m[35m (78.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["address", "Södra Långgatan 6, Kalmar"], ["latitude", 56.6623256], ["longitude", 16.3624382], ["created_at", "2016-03-07 22:57:56.683242"], ["updated_at", "2016-03-07 22:57:56.683242"]]
+  [1m[36m (96.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["address", "Skräddaretorpsvägen 10, Kalmar"], ["latitude", 56.6850544], ["longitude", 16.3362975], ["created_at", "2016-03-07 22:57:56.862410"], ["updated_at", "2016-03-07 22:57:56.862410"]]
+  [1m[35m (75.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Skön stämning!"], ["created_at", "2016-03-07 22:57:56.950421"], ["updated_at", "2016-03-07 22:57:56.950421"]]
+  [1m[36m (79.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Skitdålig"], ["created_at", "2016-03-07 22:57:57.031446"], ["updated_at", "2016-03-07 22:57:57.031446"]]
+  [1m[35m (62.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Mysig!"], ["created_at", "2016-03-07 22:57:57.096246"], ["updated_at", "2016-03-07 22:57:57.096246"]]
+  [1m[36m (101.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)[0m  [["pub_id", 1], ["tag_id", 1]]
+  [1m[35m (76.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)  [["pub_id", 1], ["tag_id", 3]]
+  [1m[36m (88.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)[0m  [["pub_id", 2], ["tag_id", 2]]
+  [1m[35m (92.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)  [["pub_id", 3], ["tag_id", 1]]
+  [1m[36m (80.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)[0m  [["pub_id", 4], ["tag_id", 3]]
+  [1m[35m (86.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)  [["pub_id", 5], ["tag_id", 1]]
+  [1m[36m (119.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)[0m  [["pub_id", 5], ["tag_id", 2]]
+  [1m[35m (86.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "pubs_tags" ("pub_id", "tag_id") VALUES (?, ?)  [["pub_id", 5], ["tag_id", 3]]
+  [1m[36m (62.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "pubs" SET "creator_id" = ?, "position_id" = ?, "updated_at" = ? WHERE "pubs"."id" = ?[0m  [["creator_id", 1], ["position_id", 1], ["updated_at", "2016-03-07 22:57:57.955642"], ["id", 1]]
+  [1m[35m (87.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "pubs" SET "creator_id" = ?, "position_id" = ?, "updated_at" = ? WHERE "pubs"."id" = ?  [["creator_id", 2], ["position_id", 2], ["updated_at", "2016-03-07 22:57:58.043588"], ["id", 2]]
+  [1m[36m (88.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "pubs" SET "creator_id" = ?, "position_id" = ?, "updated_at" = ? WHERE "pubs"."id" = ?[0m  [["creator_id", 1], ["position_id", 3], ["updated_at", "2016-03-07 22:57:58.132584"], ["id", 3]]
+  [1m[35m (123.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "pubs" SET "creator_id" = ?, "position_id" = ?, "updated_at" = ? WHERE "pubs"."id" = ?  [["creator_id", 2], ["position_id", 4], ["updated_at", "2016-03-07 22:57:58.259183"], ["id", 4]]
+  [1m[36m (87.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "pubs" SET "creator_id" = ?, "position_id" = ?, "updated_at" = ? WHERE "pubs"."id" = ?[0m  [["creator_id", 1], ["position_id", 5], ["updated_at", "2016-03-07 22:57:58.347020"], ["id", 5]]
+  [1m[35m (93.8ms)[0m  commit transaction
+
+
+Started POST "/api/pubs" for ::1 at 2016-03-07 23:59:39 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{"name"=>"Cårhuset", "phone_number"=>"0101010101", "description"=>"Fin pub billig öl hejdå"}}
+Can't verify CSRF token authenticity
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 82ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-07 23:59:47 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b587be034aef19aed3d191dd309558a1"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 36ms (Views: 10.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-08 00:00:11 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs"
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 0.0ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"api/v1/positions", :format=>:json, :id=>nil, :pub_id=>1} missing required keys: [:id]):
+  app/serializers/pub_serializer.rb:12:in `links'
+  app/controllers/api/v1/pubs_controller.rb:8:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (57.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (92.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (152.2ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-08 00:01:12 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs"
+  [1m[36mPosition Load (1.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+Completed 500 Internal Server Error in 258ms (ActiveRecord: 4.0ms)
+
+NoMethodError (undefined method `pub' for #<Tag:0x6a56378>):
+  app/serializers/tag_serializer.rb:8:in `links'
+  app/controllers/api/v1/pubs_controller.rb:8:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.8ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (102.8ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-08 00:02:16 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs"
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `pub' for #<Tag:0x9fdefd8>):
+  app/serializers/tag_serializer.rb:8:in `links'
+  app/controllers/api/v1/pubs_controller.rb:8:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (102.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:02:29 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1", "pub"=>{}}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `pub' for #<Tag:0x8987dc0>):
+  app/serializers/tag_serializer.rb:8:in `links'
+  app/controllers/api/v1/pubs_controller.rb:14:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (113.1ms)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs"  ORDER BY "pubs"."id" ASC LIMIT 1
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs"
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:04:44 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1", "pub"=>{}}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+Completed 500 Internal Server Error in 66ms (ActiveRecord: 4.0ms)
+
+NoMethodError (undefined method `pub' for #<Tag:0x77d6630>):
+  app/serializers/tag_serializer.rb:8:in `links'
+  app/controllers/api/v1/pubs_controller.rb:14:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (101.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:04:58 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `pub' for #<Tag:0x9716e38>):
+  app/serializers/tag_serializer.rb:8:in `links'
+  app/controllers/api/v1/pubs_controller.rb:14:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (45.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (101.7ms)
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT "pubs".* FROM "pubs" INNER JOIN "pubs_tags" ON "pubs"."id" = "pubs_tags"."pub_id" WHERE "pubs_tags"."tag_id" = ?[0m  [["tag_id", 1]]
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:05:29 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (1.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 151ms (Views: 115.1ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:06:30 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 2.0ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"api/v1/positions", :format=>:json, :id=>nil, :pub_id=>1} missing required keys: [:id]):
+  app/serializers/pub_serializer.rb:12:in `links'
+  app/controllers/api/v1/pubs_controller.rb:14:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (104.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:06:58 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 61ms (ActiveRecord: 1.0ms)
+
+NoMethodError (undefined method `api_position_id' for #<PubSerializer:0xcb82c18>):
+  app/serializers/pub_serializer.rb:12:in `links'
+  app/controllers/api/v1/pubs_controller.rb:14:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (47.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (103.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:07:10 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 1]]
+Completed 200 OK in 94ms (Views: 57.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/positions/1" for ::1 at 2016-03-08 00:08:22 +0100
+Processing by Api::V1::PositionsController#show as JSON
+  Parameters: {"id"=>"1"}
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/positions/1" for ::1 at 2016-03-08 00:08:39 +0100
+Processing by Api::V1::PositionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 1]]
+Completed 200 OK in 13ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/positions/1" for ::1 at 2016-03-08 00:15:29 +0100
+Processing by Api::V1::PositionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 1]]
+Completed 200 OK in 55ms (Views: 24.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/creatprs/1" for ::1 at 2016-03-08 00:15:33 +0100
+
+ActionController::RoutingError (No route matches [GET] "/api/creatprs/1"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (153.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (264.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (50.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (107.5ms)
+
+
+Started GET "/api/creators/1" for ::1 at 2016-03-08 00:15:40 +0100
+Processing by Api::V1::CreatorsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `api_creator_pubs_path' for #<CreatorSerializer:0xcc80460>):
+  app/serializers/creator_serializer.rb:6:in `links'
+  app/controllers/api/v1/creators_controller.rb:8:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (40.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (88.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (101.1ms)
+
+
+Started GET "/api/creators/1" for ::1 at 2016-03-08 00:15:58 +0100
+Processing by Api::V1::CreatorsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 37ms (Views: 6.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:20:09 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+Completed 500 Internal Server Error in 70ms (ActiveRecord: 2.0ms)
+
+NoMethodError (undefined method `api_tag' for #<TagSerializer:0x920ae88>):
+  app/serializers/tag_serializer.rb:8:in `links'
+  app/controllers/api/v1/pubs_controller.rb:14:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (101.1ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-08 00:20:48 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (1.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 1]]
+Completed 200 OK in 90ms (Views: 55.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/tags/1" for ::1 at 2016-03-08 00:23:42 +0100
+Processing by Api::V1::TagsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApp Load (1.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "b8b63be5043744001d9ae0a793b7a067"]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 10ms (Views: 1.0ms | ActiveRecord: 2.0ms)

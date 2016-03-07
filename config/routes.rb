@@ -32,7 +32,7 @@ Rails.application.routes.draw do
         resources :pubs, only: [:index, :show]
       end
       resources :creators, only: [:show, :create, :update, :destroy, :index] do
-
+        resources :pubs, only: [:index, :show]
       end
     end
   end
