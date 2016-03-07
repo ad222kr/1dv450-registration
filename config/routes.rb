@@ -18,17 +18,22 @@ Rails.application.routes.draw do
     scope module: :v1,
             constraints: ApiConstraints.new(version: 1, default: true) do
       resources :pubs, only: [:show, :create, :update, :destroy, :index] do
-        resources :positions, only: [:index]
+        resources :positions, only: [:index, :show]
         resources :tags, only: [:index]
+        resources :creators, only: [:index, :show]
+
       end
 
       resources :tags, only: [:show, :create, :update, :destroy, :index] do
-        resources :pubs, only: [:index]
+        resources :pubs, only: [:index, :show]
       end
 
-      resources :positions, only: [:index, :show]
+      resources :positions, only: [:index, :show, :create, :destroy, :update] do
+        resources :pubs, only: [:index, :show]
+      end
+      resources :creators, only: [:show, :create, :update, :destroy, :index] do
 
-      resources
+      end
     end
   end
 end

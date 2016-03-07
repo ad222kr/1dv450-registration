@@ -26,4 +26,5 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 @pub.position = Position.create(address: "Skräddaretorpsvägen 14, Kalmar")
 @pub.save
 @pub.tags << Tag.new(name: "Skön stämning!")
+Tag.create(name: "Skitdålig")
 
