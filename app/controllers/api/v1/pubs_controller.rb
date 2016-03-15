@@ -1,21 +1,20 @@
 class Api::V1::PubsController < Api::V1::ApiBaseController
-
-
   skip_before_action :authenticate, only: [:index, :show]
-
   respond_to :json
+
+  LOCATION_TAKEN     = "There already exists a pub at that location. Cant have two pubs at the same location eh?"
+  CANT_EDIT          = "You did not create the post and cannot edit it"
+  CAND_FIND_PUB      = "Could not find a pub with that id"
+  PUB_NEEDS_POSITION = "The pub needs aposition!"
 
   def index
     respond_with Pub.all
   end
 
-
   def show
     pub = Pub.find(params[:id])
     respond_with pub, status: :ok
   end
-
-
 
   def create
     return unless pub_has_position? && position_is_available?
@@ -37,13 +36,10 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
     end
   end
 
-
   def update
     pub = Pub.find_by_id(params[:id])
-    render json: { error: "You did not create the post and cannot edit it" } and return unless current_user == pub.creator
-
-    render json: { error: "Could not find a pub with that id"} unless pub
-
+    render json: { error: CANT_EDIT } and return unless current_user == pub.creator
+    render json: { error: CAND_FIND_PUB } unless pub
 
     if pub.update(pub_params)
       render json: { action: "update", pub: PubSerializer.new(pub) }, status: :ok
@@ -64,9 +60,10 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       json_params.require(:pub).permit(:name, :phone_number, :description, tags: [:name], position: [:address])
     end
 
+
     def pub_has_position?
       if pub_params[:position].blank?
-        render json: { errors: "The pub needs aposition!" }
+        render json: { errors: PUB_NEEDS_POSITION }
         return false
       end
       return true
@@ -74,7 +71,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
     def position_is_available?
       if Position.find_by_address(pub_params[:position][:address])
-        render json: { errors: "There already exists a pub at that location. Cant have two pubs at the same location eh?" }, status: :conflict
+        render json: { errors: LOCATION_TAKEN }, status: :conflict
         return false
       end
       return true
