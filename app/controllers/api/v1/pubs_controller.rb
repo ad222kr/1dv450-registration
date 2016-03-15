@@ -8,7 +8,28 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   PUB_NEEDS_POSITION = "The pub needs aposition!"
 
   def index
-    respond_with Pub.all
+    if params[:tag_id]
+      tag = Tag.find_by_id(params[:tag_id])
+      if tag
+        respond_with tag.pubs
+      else
+        render json: {
+          developer_error: "Could not find a tag with that id, therefore no pubs exist",
+          user_error: "Something went wrong when getting pubs"
+        }, status: :not_found
+        return
+      end
+    elsif params[:creator_id]
+      creator = Creator.find_by_id(params[:creator_id])
+      if creator
+        respond_with
+      else
+
+      end
+      respond_with Creator.find_by_id(params[:creator_id]).pubs
+    else
+      respond_with Pub.all
+    end
   end
 
   def show
@@ -17,34 +38,51 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   end
 
   def create
-    return unless pub_has_position? && position_is_available?
+    begin
+      return unless position_param_present? && position_is_available?
 
-    pub = Pub.new(pub_params.except(:tags, :position))
-    pub.creator = current_user
-    pub.position = Position.create(pub_params[:position])
+      pub = Pub.new(pub_params.except(:tags, :position))
+      pub.creator = current_user
+      pub.position = Position.create(pub_params[:position])
 
-    if tags = pub_params[:tags]
-      tags.each do |tag|
-        pub.tags << Tag.where(tag).first_or_create
+      if tags = pub_params[:tags]
+        tags.each do |tag|
+          pub.tags << Tag.where(tag).first_or_create
+        end
       end
-    end
 
-    if pub.save
-      render json: pub, status: 201, location: [:api, pub]
-    else
-      render json: { errors: pub.errors.messages }, status: 402
+      if pub.save
+        render json: pub, status: 201, location: [:api, pub]
+      else
+        render json: { errors: pub.errors.messages }, status: 402
+      end
+    rescue JSON::ParserError => e
+      render json: {
+        developer_error: "Could not parse json",
+        user_error: "Something went wrong"
+      }, status: :bad_request
     end
   end
 
   def update
     pub = Pub.find_by_id(params[:id])
-    render json: { error: CANT_EDIT } and return unless current_user == pub.creator
-    render json: { error: CAND_FIND_PUB } unless pub
 
-    if pub.update(pub_params)
-      render json: { action: "update", pub: PubSerializer.new(pub) }, status: :ok
-    else
-      render json: { errors: pub.errors.messages }, status: :bad_request
+    render json: {
+      error: CANT_EDIT
+    } and return unless current_user == pub.creator
+    render json: { error: CAND_FIND_PUB } and return unless pub
+
+    begin
+      if pub.update(pub_params)
+        render json: { action: "update", pub: PubSerializer.new(pub) }, status: :ok
+      else
+        render json: { errors: pub.errors.messages }, status: :bad_request
+      end
+    rescue JSON::ParserError => e
+      render json: {
+        developer_error: "Could not parse json",
+        user_error: "Something went wrong"
+      }, status: :bad_request
     end
   end
 
@@ -61,7 +99,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
     end
 
 
-    def pub_has_position?
+    def position_param_present?
       if pub_params[:position].blank?
         render json: { errors: PUB_NEEDS_POSITION }
         return false

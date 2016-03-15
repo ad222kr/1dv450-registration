@@ -14,11 +14,8 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 @testuser2 = User.create(name: "Test Usah!!", email: "testuser2@example.com", password: "testuser2password",
                          password_confirmation: "testuser2password")
 
-
-
 @testuser.apps << App.create(name: "TestApp", api_key: "justATestApiKeyOne")
 @testuser2.apps << App.create(name: "TestApp2", api_key: "justATestApiKeyTwoLol")
-
 
 @pub = Pub.create(name: "Sverres pub", phone_number: "0202002123", description: "asdasdasdasd")
 @pub2 = Pub.create(name: "Alex pub", phone_number: "0202002444", description: "asdasdasdasd")
@@ -29,13 +26,11 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 @creator1 = Creator.create(email: "testcreator@example.com", password: "testcreatorpassword")
 @creator2 = Creator.create(email: "testcreator2@example.com", password: "testcreatorpassword")
 
-
 @pub.creator = @creator1
 @pub2.creator = @creator2
 @pub3.creator = @creator1
 @pub4.creator = @creator2
 @pub5.creator = @creator1
-
 
 @pub.position = Position.create(address: "Skräddaretorpsvägen 14, Kalmar")
 @pub2.position = Position.create(address: "Gröndalsvägen 27, Kalmar")
@@ -49,25 +44,15 @@ User.create(name: "Admin Svensson", email:"admin@admin.com", password: "adminpas
 
 @pub.tags << @tag
 @pub.tags << @tag3
-
 @pub2.tags << @tag2
-
 @pub3.tags << @tag
-
 @pub4.tags << @tag3
-
 @pub5.tags << @tag
 @pub5.tags << @tag2
 @pub5.tags << @tag3
-
 
 @pub.save
 @pub2.save
 @pub3.save
 @pub4.save
 @pub5.save
-
-
-
-
-

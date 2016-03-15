@@ -3,7 +3,7 @@ class CreatorSerializer < ActiveModel::Serializer
 
   def links
     {
-      pubs: api_creator_pubs_path(object.id)
+      pubs: api_pubs_path(object.id)
     }
   end
 end
