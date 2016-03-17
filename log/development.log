@@ -35500,3 +35500,32 @@ Processing by Api::V1::PubsController#index as JSON
   [1m[35mPosition Load (1.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 3]]
   [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 3]]
 Completed 200 OK in 30ms (Views: 20.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?starts_with=Ma" for ::1 at 2016-03-17 21:54:22 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"starts_with"=>"Ma", "pub"=>{}}
+  [1m[35m (1.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" WHERE (name like 'Ma%') LIMIT 2 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE (name like 'Ma%') LIMIT 2 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+Completed 200 OK in 31ms (Views: 22.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/pubs/1/tags" for ::1 at 2016-03-17 21:54:49 +0100
+Processing by Api::V1::TagsController#create as JSON
+  Parameters: {"tag"=>{"name"=>"Nice!!"}, "pub_id"=>"1"}
+Can't verify CSRF token authenticity
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 109ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs/1" for ::1 at 2016-03-17 21:55:05 +0100
+Processing by Api::V1::PubsController#show as JSON
+  Parameters: {"id"=>"1", "pub"=>{}}
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+Completed 200 OK in 42ms (Views: 9.0ms | ActiveRecord: 0.5ms)
