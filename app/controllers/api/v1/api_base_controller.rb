@@ -5,6 +5,9 @@ class Api::V1::ApiBaseController < ApplicationController
   # before_action :restrict_access
   respond_to :json
 
+  OFFSET = 0
+  LIMIT = 2
+
   private
     def restrict_access
       # Cannot send multiple Authorization-headers. Knock uses for end-user
@@ -14,6 +17,17 @@ class Api::V1::ApiBaseController < ApplicationController
       unless @app
         render json: { errors: { developer_error: "The API-key is invalid", user_error: "Something went wrong" } }, status: :unauthorized
       end
+    end
+
+    def offset_params
+      if params[:offset].present?
+        @offset = params[:offset]
+      end
+      if params[:limit].present?
+        @limit = params[:limit]
+      end
+      @offset ||= OFFSET
+      @limit ||= LIMIT
     end
 
 end

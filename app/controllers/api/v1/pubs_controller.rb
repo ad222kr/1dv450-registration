@@ -1,5 +1,6 @@
 class Api::V1::PubsController < Api::V1::ApiBaseController
   skip_before_action :authenticate, only: [:index, :show]
+  before_action :offset_params, only: [:index]
   respond_to :json
 
   LOCATION_TAKEN     = "There already exists a pub at that location. Cant have two pubs at the same location eh?"
@@ -9,9 +10,9 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
   def index
     if params[:tag_id]
-      tag = Tag.find_by_id(params[:tag_id])
+      tag = Tag.find_by(id: params[:tag_id])
       if tag
-        respond_with tag.pubs
+        respond_with tag.pubs.limit(@limit).offset(@offset)
       else
         render json: {
           developer_error: "Could not find a tag with that id, therefore no pubs exist",
@@ -20,15 +21,14 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
         return
       end
     elsif params[:creator_id]
-      creator = Creator.find_by_id(params[:creator_id])
+      creator = Creator.find_by(id: params[:creator_id])
       if creator
-        respond_with
+        respond_with cretor.pubs.limit(@limit).offset(@offset)
       else
 
       end
-      respond_with Creator.find_by_id(params[:creator_id]).pubs
     else
-      respond_with Pub.all
+      respond_with Pub.limit(@limit).offset(@offset)
     end
   end
 

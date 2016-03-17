@@ -1,6 +1,7 @@
 class Api::V1::TagsController < Api::V1::ApiBaseController
   respond_to :json
   skip_before_action :authenticate, only: [:index, :show]
+  before_action :offset_params, only: [:index]
   CANT_FIND_PUB = "The pub to add the tag to could not be found or was not specified"
 
   def index
