@@ -10,26 +10,22 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
   def index
     if params[:tag_id]
-      tag = Tag.find_by(id: params[:tag_id])
+      tag = Tag.find_by_id(params[:tag_id])
       if tag
-        respond_with tag.pubs.limit(@limit).offset(@offset)
-      else
-        render json: {
-          developer_error: "Could not find a tag with that id, therefore no pubs exist",
-          user_error: "Something went wrong when getting pubs"
-        }, status: :not_found
-        return
+        pubs = tag.pubs.limit(@limit).offset(@offset)
       end
     elsif params[:creator_id]
-      creator = Creator.find_by(id: params[:creator_id])
+      creator = Creator.find_by_id([:creator_id])
       if creator
-        respond_with cretor.pubs.limit(@limit).offset(@offset)
-      else
-
+        pubs = cretor.pubs.limit(@limit).offset(@offset)
       end
     else
-      respond_with Pub.limit(@limit).offset(@offset)
+      pubs = Pub.limit(@limit).offset(@offset)
     end
+    pubs = pubs.starts_with(params[:starts_with]) if params[:starts_with]
+    response = { offset: @offset, limit: @limit, count: pubs.count, pubs: ActiveModel::ArraySerializer.new(pubs) }
+    respond_with response
+
   end
 
   def show
