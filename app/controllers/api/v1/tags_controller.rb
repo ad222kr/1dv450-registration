@@ -10,14 +10,24 @@ class Api::V1::TagsController < Api::V1::ApiBaseController
   def index
     if (params[:pub_id])
       pub = Pub.find_by_id(params[:pub_id])
-      respond_with pub.tags
+      if pub.present?
+        tags =  pub.tags
+      else
+        render json: { error: "Could not find a pub with id of #{params[:pub_id]}" }, status: :not_found and return
+      end
     else
-      respond_with Tag.all
+      tags = Tag.all
     end
+    respond_with tags, status: :ok
   end
 
   def show
-    respond_with Tag.find_by_id(params[:id])
+    tag = Tag.find_by_id(params[:id])
+    if tag.presnet?
+      respond_with tag, :status :ok
+    else
+      render json: { error: "Could not find tag with id of #{params[:id]}" }, status: :not_found
+    end
   end
 
   def create

@@ -1,5 +1,5 @@
 class PositionSerializer < ActiveModel::Serializer
-  attributes :id, :address, :longitude, :latitude, :links
+  attributes :id, :address,  :latitude, :longitude, :links
 
   def links
     {

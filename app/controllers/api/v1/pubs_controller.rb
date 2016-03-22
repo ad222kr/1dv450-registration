@@ -10,48 +10,20 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   PUB_NEEDS_POSITION = "The pub needs aposition!"
   DEFAULT_DISTANCE   = 10
 
-  def get_pubs_near_positions(position_params)
-    pubs = []
-    10.times { puts position_params }
-    distance = params[:distance] ? params[:distance] : DEFAULT_DISTANCE
-    positions = Position.near(position_params, distance, :units => :km)
-
-    positions.each do |p|
-      pubs << p.pub
-    end
-    pubs
-  end
-
   def index
     if params[:tag_id]
       # Get pubs connected to a tag
       tag = Tag.find_by_id(params[:tag_id])
-      if tag
-        pubs = tag.pubs.limit(@limit).offset(@offset)
-      end
+      pubs = tag.pubs.limit(@limit).offset(@offset) if tag.present?
     elsif params[:creator_id]
       # Get pubs connected to a creator
       creator = Creator.find_by_id(params[:creator_id])
-
-      if creator
-        pubs = creator.pubs.limit(@limit).offset(@offset)
-
-      end
+      pubs = creator.pubs.limit(@limit).offset(@offset) if creator.present?
     elsif params[:near_address]
-    # Query params starts here
-      # Search for pubs near a position (address)
-      # positions = Position.near(params[:near_address], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
-      # positions.each do |p|
-      #   pubs << p.pub
-      # end
+      # Get pubs near position (address)
       pubs = get_pubs_near_positions(params[:near_address])
     elsif params[:lng] && params[:ltd]
-      # Search for pubs near a position (longitude and latitude)
-      # pubs = []
-      # positions = Position.near([params[:ltd], params[:lng]], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
-      # positions.each do |p|
-      #   pubs << p.pub
-      # end
+      # Get pubs near position (latitude and longitude)
       pubs = get_pubs_near_positions([params[:ltd], params[:lng]])
     else
       pubs = Pub.all
@@ -69,7 +41,11 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
   def show
     pub = Pub.find(params[:id])
-    respond_with pub, status: :ok
+    if pub.present?
+      respond_with pub, status: :ok
+    else
+      render json: { error: "Could not find a pub with the id of #{params[:id]}" }, status: :not_found
+    end
   end
 
   def create
@@ -88,9 +64,8 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
       if pub.save
         respond_with pub, status: 201, location: [:api, pub]
-        # render json: pub, status: 201, location: [:api, pub]
       else
-        render json: { errors: pub.errors.messages }, status: 402
+        render json: { errors: pub.errors.messages }, status: :bad_request
       end
     rescue JSON::ParserError => e
       render json: { error: COULD_NOT_PARSE_JSON }, status: :bad_request
@@ -102,8 +77,6 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
     render json: { error: CAND_FIND_PUB }, status: :bad_request and return unless pub
     render json: { error: CANT_EDIT }, status: :unauthorized and return unless current_user == pub.creator
-
-
 
     begin
       if pub.update(pub_params)
@@ -117,7 +90,6 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   end
 
   def destroy
-    10.times { puts current_user.id }
     pub = Pub.find_by_id(params[:id])
 
     render json: { error: CAND_FIND_PUB }, status: :bad_request and return unless pub
@@ -125,7 +97,6 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
     pub.destroy
     render json: { action: "destroy", message: "Pub with id #{params[:id]} was removed" }, status: :ok
-
   end
 
   private
@@ -133,7 +104,6 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       json_params = ActionController::Parameters.new(JSON.parse(request.body.read))
       json_params.require(:pub).permit(:name, :phone_number, :description, tags: [:name], position: [:address])
     end
-
 
     def position_param_present?
       if pub_params[:position].blank?
@@ -149,5 +119,23 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
         return false
       end
       return true
+    end
+
+    # Gets pubs near a location
+    # Expects a string of an address or a array with latitude and longitude
+    # Example with string as #
+    # => get_pubs_near_positions("Skräddaretorpsvägen 6, Kalmar")
+    # Example with array as params
+    # => get_pubs_near_positions([56, 16])
+    def get_pubs_near_positions(position_params)
+      pubs = []
+      10.times { puts position_params }
+      distance = params[:distance] ? params[:distance] : DEFAULT_DISTANCE
+      positions = Position.near(position_params, distance, :units => :km)
+
+      positions.each do |p|
+        pubs << p.pub
+      end
+      pubs
     end
 end
