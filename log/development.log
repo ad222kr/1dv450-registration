@@ -38451,3 +38451,558 @@ Can't verify CSRF token authenticity
   [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "pubs" WHERE "pubs"."id" = ?[0m  [["id", 5]]
   [1m[35m (93.5ms)[0m  commit transaction
 Completed 200 OK in 124ms (Views: 19.0ms | ActiveRecord: 95.5ms)
+
+
+Started DELETE "/api/pubs/5" for ::1 at 2016-03-22 23:12:21 +0100
+Processing by Api::V1::PubsController#destroy as JSON
+  Parameters: {"pub"=>{"name"=>"asdasd Test 111", "phone_number"=>"070777111", "description"=>"Hahaha ganska skön ju"}, "id"=>"5"}
+Can't verify CSRF token authenticity
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 5]]
+Completed 400 Bad Request in 27ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 23:12:26 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mPub Load (1.0ms)[0m  [1mSELECT "pubs".* FROM "pubs"[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "pubs"
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (1.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+Completed 200 OK in 75ms (Views: 58.0ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 23:12:46 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT "pubs".* FROM "pubs"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "pubs"
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+Completed 200 OK in 77ms (Views: 64.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 23:12:56 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT "pubs".* FROM "pubs"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "pubs"
+  [1m[36mCreator Load (1.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+Completed 200 OK in 80ms (Views: 62.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 23:13:15 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT "pubs".* FROM "pubs"[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "pubs"
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+Completed 200 OK in 79ms (Views: 67.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?starts_with=Ma" for ::1 at 2016-03-22 23:23:04 +0100
+
+SyntaxError (C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/RegistreringsApp/app/controllers/api/v1/pubs_controller.rb:44: syntax error, unexpected '(', expecting ')'
+      get_pubs_near_positions(params[:near_address]())
+                                                    ^):
+  app/controllers/api/v1/pubs_controller.rb:44: syntax error, unexpected '(', expecting ')'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (42.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (93.6ms)
+
+
+Started GET "/api/pubs?starts_with=Ma" for ::1 at 2016-03-22 23:23:18 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"starts_with"=>"Ma", "pub"=>{}}
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT "pubs".* FROM "pubs"[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "pubs" WHERE (name like 'Ma%')
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT "pubs".* FROM "pubs" WHERE (name like 'Ma%')[0m
+Completed 200 OK in 24ms (Views: 11.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?starts_with=Jo" for ::1 at 2016-03-22 23:23:23 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"starts_with"=>"Jo", "pub"=>{}}
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "pubs" WHERE (name like 'Jo%')[0m
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs" WHERE (name like 'Jo%')
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+Completed 200 OK in 74ms (Views: 67.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=56" for ::1 at 2016-03-22 23:23:46 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"56", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `pubs' for #<Api::V1::PubsController:0x88801e0>):
+  app/controllers/api/v1/pubs_controller.rb:19:in `get_pubs_near_positions'
+  app/controllers/api/v1/pubs_controller.rb:51:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (43.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (93.5ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=56" for ::1 at 2016-03-22 23:24:30 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"56", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 18ms (Views: 10.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=57" for ::1 at 2016-03-22 23:24:36 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"57", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 11ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 23:24:41 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT "pubs".* FROM "pubs"[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "pubs"
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+Completed 200 OK in 76ms (Views: 64.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=56" for ::1 at 2016-03-22 23:24:54 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"56", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 26ms (Views: 23.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=56&distance=5" for ::1 at 2016-03-22 23:25:06 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"56", "distance"=>"5", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 15ms (Views: 12.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=56&distance=500" for ::1 at 2016-03-22 23:25:08 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"56", "distance"=>"500", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=56&distance=500000" for ::1 at 2016-03-22 23:25:11 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"56", "distance"=>"500000", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 10ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16&ltd=56&distance=500000" for ::1 at 2016-03-22 23:25:34 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16", "ltd"=>"56", "distance"=>"500000", "pub"=>{}}
+  [1m[36mPosition Load (1.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 23ms (Views: 9.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 23:25:51 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs"
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "pubs"[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+Completed 200 OK in 75ms (Views: 60.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=500000" for ::1 at 2016-03-22 23:26:06 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"500000", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 18ms (Views: 10.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67" for ::1 at 2016-03-22 23:26:10 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "pub"=>{}}
+  [1m[36mPosition Load (1.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 16ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67" for ::1 at 2016-03-22 23:26:55 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 21ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=5" for ::1 at 2016-03-22 23:27:33 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"5", "pub"=>{}}
+  [1m[36mPosition Load (1.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 14ms (Views: 10.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=5" for ::1 at 2016-03-22 23:27:44 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"5", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 21ms (Views: 9.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:27:50 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 12ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:28:06 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 20ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:28:19 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 17ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:28:46 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 11ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:29:20 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 17ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:29:21 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:29:47 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 48ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:30:08 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)[0m
+Completed 404 Not Found in 43ms (Views: 9.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:30:18 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, NULL AS distance, NULL AS bearing FROM "positions" WHERE (0)
+Completed 404 Not Found in 19ms (Views: 10.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=50" for ::1 at 2016-03-22 23:30:38 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"50", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 16.35) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 56.67) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 16.35 AND positions.longitude >= 56.67) THEN  45.0 WHEN (positions.latitude <  16.35 AND positions.longitude >= 56.67) THEN 135.0 WHEN (positions.latitude <  16.35 AND positions.longitude <  56.67) THEN 225.0 WHEN (positions.latitude >= 16.35 AND positions.longitude <  56.67) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 15.900339197040637 AND 16.799660802959366 AND positions.longitude BETWEEN 56.20138854933416 AND 57.13861145066584)  ORDER BY distance ASC[0m
+Completed 404 Not Found in 18ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=500" for ::1 at 2016-03-22 23:30:57 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"500", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 16.35) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 56.67) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 16.35 AND positions.longitude >= 56.67) THEN  45.0 WHEN (positions.latitude <  16.35 AND positions.longitude >= 56.67) THEN 135.0 WHEN (positions.latitude <  16.35 AND positions.longitude <  56.67) THEN 225.0 WHEN (positions.latitude >= 16.35 AND positions.longitude <  56.67) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 11.85339197040635 AND 20.846608029593654 AND positions.longitude BETWEEN 51.98388549334162 AND 61.356114506658386)  ORDER BY distance ASC
+Completed 404 Not Found in 11ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?lng=16.35&ltd=56.67&distance=5000000" for ::1 at 2016-03-22 23:31:01 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.35", "ltd"=>"56.67", "distance"=>"5000000", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 16.35) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 56.67) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 16.35 AND positions.longitude >= 56.67) THEN  45.0 WHEN (positions.latitude <  16.35 AND positions.longitude >= 56.67) THEN 135.0 WHEN (positions.latitude <  16.35 AND positions.longitude <  56.67) THEN 225.0 WHEN (positions.latitude >= 16.35 AND positions.longitude <  56.67) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN -44949.730295936526 AND 44982.43029593652 AND positions.longitude BETWEEN -46804.47506658384 AND 46917.81506658383)  ORDER BY distance ASC[0m
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 4]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 2]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 3]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 5]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 2]]
+Completed 200 OK in 294ms (Views: 87.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?lng=16.3624382&ltd=56.6623256" for ::1 at 2016-03-22 23:31:19 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"lng"=>"16.3624382", "ltd"=>"56.6623256", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 16.3624382) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 56.6623256) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 16.3624382 AND positions.longitude >= 56.6623256) THEN  45.0 WHEN (positions.latitude <  16.3624382 AND positions.longitude >= 56.6623256) THEN 135.0 WHEN (positions.latitude <  16.3624382 AND positions.longitude <  56.6623256) THEN 225.0 WHEN (positions.latitude >= 16.3624382 AND positions.longitude <  56.6623256) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 16.317472119704064 AND 16.407404280295935 AND positions.longitude BETWEEN 56.61546146921498 AND 56.70918973078503)  ORDER BY distance ASC[0m
+Completed 404 Not Found in 13ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?ltd=16.3624382&lng=56.6623256" for ::1 at 2016-03-22 23:31:26 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"16.3624382", "lng"=>"56.6623256", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.6623256) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.3624382) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.6623256 AND positions.longitude >= 16.3624382) THEN  45.0 WHEN (positions.latitude <  56.6623256 AND positions.longitude >= 16.3624382) THEN 135.0 WHEN (positions.latitude <  56.6623256 AND positions.longitude <  16.3624382) THEN 225.0 WHEN (positions.latitude >= 56.6623256 AND positions.longitude <  16.3624382) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 56.61735951970407 AND 56.70729168029594 AND positions.longitude BETWEEN 16.280618060780427 AND 16.444258339219573)  ORDER BY distance ASC
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 4]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 2]]
+  [1m[36mPub Load (1.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 3]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 5]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 1]]
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 163ms (Views: 24.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/pubs?ltd=16.3624382&lng=56.6623256" for ::1 at 2016-03-22 23:34:30 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"16.3624382", "lng"=>"56.6623256", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.6623256) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.3624382) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.6623256 AND positions.longitude >= 16.3624382) THEN  45.0 WHEN (positions.latitude <  56.6623256 AND positions.longitude >= 16.3624382) THEN 135.0 WHEN (positions.latitude <  56.6623256 AND positions.longitude <  16.3624382) THEN 225.0 WHEN (positions.latitude >= 56.6623256 AND positions.longitude <  16.3624382) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 56.61735951970407 AND 56.70729168029594 AND positions.longitude BETWEEN 16.280618060780427 AND 16.444258339219573)  ORDER BY distance ASC
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 4]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 2]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 3]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 5]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 1]]
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 109ms (Views: 68.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/api/pubs?ltd=16.3624382&lng=56.6623256" for ::1 at 2016-03-22 23:35:24 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"16.3624382", "lng"=>"56.6623256", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.6623256) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.3624382) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.6623256 AND positions.longitude >= 16.3624382) THEN  45.0 WHEN (positions.latitude <  56.6623256 AND positions.longitude >= 16.3624382) THEN 135.0 WHEN (positions.latitude <  56.6623256 AND positions.longitude <  16.3624382) THEN 225.0 WHEN (positions.latitude >= 56.6623256 AND positions.longitude <  16.3624382) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 56.61735951970407 AND 56.70729168029594 AND positions.longitude BETWEEN 16.280618060780427 AND 16.444258339219573)  ORDER BY distance ASC
+  [1m[36mPub Load (1.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 4]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 2]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 3]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 5]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 1]]
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 115ms (Views: 69.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?ltd=16&lng=56" for ::1 at 2016-03-22 23:35:36 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"16", "lng"=>"56", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.0 AND positions.longitude >= 16.0) THEN  45.0 WHEN (positions.latitude <  56.0 AND positions.longitude >= 16.0) THEN 135.0 WHEN (positions.latitude <  56.0 AND positions.longitude <  16.0) THEN 225.0 WHEN (positions.latitude >= 56.0 AND positions.longitude <  16.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 55.955033919704064 AND 56.044966080295936 AND positions.longitude BETWEEN 15.919587534074832 AND 16.080412465925168)  ORDER BY distance ASC
+Completed 404 Not Found in 21ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?ltd=16&lng=56&distance=10" for ::1 at 2016-03-22 23:35:43 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"16", "lng"=>"56", "distance"=>"10", "pub"=>{}}
+  [1m[36mPosition Load (1.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.0 AND positions.longitude >= 16.0) THEN  45.0 WHEN (positions.latitude <  56.0 AND positions.longitude >= 16.0) THEN 135.0 WHEN (positions.latitude <  56.0 AND positions.longitude <  16.0) THEN 225.0 WHEN (positions.latitude >= 56.0 AND positions.longitude <  16.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 55.91006783940813 AND 56.08993216059187 AND positions.longitude BETWEEN 15.839175068149666 AND 16.160824931850335)  ORDER BY distance ASC[0m
+Completed 404 Not Found in 22ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?ltd=16&lng=56&distance=100" for ::1 at 2016-03-22 23:35:46 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"16", "lng"=>"56", "distance"=>"100", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.0 AND positions.longitude >= 16.0) THEN  45.0 WHEN (positions.latitude <  56.0 AND positions.longitude >= 16.0) THEN 135.0 WHEN (positions.latitude <  56.0 AND positions.longitude <  16.0) THEN 225.0 WHEN (positions.latitude >= 56.0 AND positions.longitude <  16.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 55.10067839408127 AND 56.89932160591873 AND positions.longitude BETWEEN 14.391750681496664 AND 17.608249318503336)  ORDER BY distance ASC
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 4]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 5]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 3]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 2]]
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 46ms (Views: 26.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:35:59 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"56", "lng"=>"16", "distance"=>"100", "pub"=>{}}
+  [1m[35mPosition Load (1.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 16.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 56.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 16.0 AND positions.longitude >= 56.0) THEN  45.0 WHEN (positions.latitude <  16.0 AND positions.longitude >= 56.0) THEN 135.0 WHEN (positions.latitude <  16.0 AND positions.longitude <  56.0) THEN 225.0 WHEN (positions.latitude >= 16.0 AND positions.longitude <  56.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 15.10067839408127 AND 16.89932160591873 AND positions.longitude BETWEEN 55.064436240704595 AND 56.935563759295405)  ORDER BY distance ASC
+Completed 404 Not Found in 29ms (Views: 12.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:36:31 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"56", "lng"=>"16", "distance"=>"100", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 16.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 56.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 16.0 AND positions.longitude >= 56.0) THEN  45.0 WHEN (positions.latitude <  16.0 AND positions.longitude >= 56.0) THEN 135.0 WHEN (positions.latitude <  16.0 AND positions.longitude <  56.0) THEN 225.0 WHEN (positions.latitude >= 16.0 AND positions.longitude <  56.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 15.10067839408127 AND 16.89932160591873 AND positions.longitude BETWEEN 55.064436240704595 AND 56.935563759295405)  ORDER BY distance ASC[0m
+Completed 404 Not Found in 24ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:36:59 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"56", "lng"=>"16", "distance"=>"100", "pub"=>{}}
+  [1m[35mPosition Load (0.0ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 16.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 56.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 16.0 AND positions.longitude >= 56.0) THEN  45.0 WHEN (positions.latitude <  16.0 AND positions.longitude >= 56.0) THEN 135.0 WHEN (positions.latitude <  16.0 AND positions.longitude <  56.0) THEN 225.0 WHEN (positions.latitude >= 16.0 AND positions.longitude <  56.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 15.10067839408127 AND 16.89932160591873 AND positions.longitude BETWEEN 55.064436240704595 AND 56.935563759295405)  ORDER BY distance ASC
+Completed 404 Not Found in 22ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:37:02 +0100
+
+SyntaxError (C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/RegistreringsApp/app/controllers/api/v1/pubs_controller.rb:49: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+      Search for pubs near a position (longitude and latitude)
+                          ^
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/RegistreringsApp/app/controllers/api/v1/pubs_controller.rb:49: syntax error, unexpected keyword_and, expecting ')'
+      Search for pubs near a position (longitude and latitude)
+                                                    ^
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/RegistreringsApp/app/controllers/api/v1/pubs_controller.rb:51: syntax error, unexpected keyword_do_block, expecting keyword_end
+      positions.each do |p|
+                       ^
+C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/RegistreringsApp/app/controllers/api/v1/pubs_controller.rb:154: syntax error, unexpected keyword_end, expecting end-of-input):
+  app/controllers/api/v1/pubs_controller.rb:49: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+  app/controllers/api/v1/pubs_controller.rb:49: syntax error, unexpected keyword_and, expecting ')'
+  app/controllers/api/v1/pubs_controller.rb:51: syntax error, unexpected keyword_do_block, expecting keyword_end
+  app/controllers/api/v1/pubs_controller.rb:154: syntax error, unexpected keyword_end, expecting end-of-input
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (55.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (48.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (105.3ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:37:28 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"56", "lng"=>"16", "distance"=>"100", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.0 AND positions.longitude >= 16.0) THEN  45.0 WHEN (positions.latitude <  56.0 AND positions.longitude >= 16.0) THEN 135.0 WHEN (positions.latitude <  56.0 AND positions.longitude <  16.0) THEN 225.0 WHEN (positions.latitude >= 56.0 AND positions.longitude <  16.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 55.10067839408127 AND 56.89932160591873 AND positions.longitude BETWEEN 14.391750681496664 AND 17.608249318503336)  ORDER BY distance ASC[0m
+  [1m[35mPub Load (1.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 1]]
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 2.0ms)
+
+NoMethodError (undefined method `<<' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:52:in `block in index'
+  app/controllers/api/v1/pubs_controller.rb:51:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (42.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (93.1ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:37:39 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"56", "lng"=>"16", "distance"=>"100", "pub"=>{}}
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.0 AND positions.longitude >= 16.0) THEN  45.0 WHEN (positions.latitude <  56.0 AND positions.longitude >= 16.0) THEN 135.0 WHEN (positions.latitude <  56.0 AND positions.longitude <  16.0) THEN 225.0 WHEN (positions.latitude >= 56.0 AND positions.longitude <  16.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 55.10067839408127 AND 56.89932160591873 AND positions.longitude BETWEEN 14.391750681496664 AND 17.608249318503336)  ORDER BY distance ASC[0m
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 4]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 5]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 3]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 2]]
+  [1m[36mCreator Load (1.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 2]]
+Completed 200 OK in 93ms (Views: 61.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:38:08 +0100
+
+SyntaxError (C:/Users/Alex/Desktop/Plugg/1dv450 Webramverk/RegistreringsApp/app/controllers/api/v1/pubs_controller.rb:153: syntax error, unexpected keyword_end, expecting end-of-input):
+  app/controllers/api/v1/pubs_controller.rb:153: syntax error, unexpected keyword_end, expecting end-of-input
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (41.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (93.7ms)
+
+
+Started GET "/api/pubs?ltd=56&lng=16&distance=100" for ::1 at 2016-03-22 23:38:19 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"ltd"=>"56", "lng"=>"16", "distance"=>"100", "pub"=>{}}
+  [1m[36mPosition Load (1.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.0) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.0) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.0 AND positions.longitude >= 16.0) THEN  45.0 WHEN (positions.latitude <  56.0 AND positions.longitude >= 16.0) THEN 135.0 WHEN (positions.latitude <  56.0 AND positions.longitude <  16.0) THEN 225.0 WHEN (positions.latitude >= 56.0 AND positions.longitude <  16.0) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 55.10067839408127 AND 56.89932160591873 AND positions.longitude BETWEEN 14.391750681496664 AND 17.608249318503336)  ORDER BY distance ASC[0m
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 4]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 5]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 3]]
+  [1m[35mPub Load (1.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 2]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 2]]
+Completed 200 OK in 102ms (Views: 64.0ms | ActiveRecord: 5.0ms)

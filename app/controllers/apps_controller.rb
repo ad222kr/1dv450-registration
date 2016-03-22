@@ -6,9 +6,6 @@ class AppsController < ApplicationController
   end
 
   def create
-
-    # @app = App.create(app_params)
-    # @app.user = current_dev_user
     @app = current_dev_user.apps.build(app_params)
 
     if @app.save

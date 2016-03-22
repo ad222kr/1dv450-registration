@@ -8,7 +8,19 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   CANT_DESTROY       = "You did not create the post and cannot delete it"
   CAND_FIND_PUB      = "Could not find a pub with that id"
   PUB_NEEDS_POSITION = "The pub needs aposition!"
-  DEFAULT_DISTANCE   = 5
+  DEFAULT_DISTANCE   = 10
+
+  def get_pubs_near_positions(position_params)
+    pubs = []
+    10.times { puts position_params }
+    distance = params[:distance] ? params[:distance] : DEFAULT_DISTANCE
+    positions = Position.near(position_params, distance, :units => :km)
+
+    positions.each do |p|
+      pubs << p.pub
+    end
+    pubs
+  end
 
   def index
     if params[:tag_id]
@@ -20,31 +32,32 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
     elsif params[:creator_id]
       # Get pubs connected to a creator
       creator = Creator.find_by_id(params[:creator_id])
-      10.times { puts creator }
+
       if creator
         pubs = creator.pubs.limit(@limit).offset(@offset)
-        10.times { puts pubs }
+
       end
     elsif params[:near_address]
     # Query params starts here
       # Search for pubs near a position (address)
-      positions = Position.near(params[:near_address], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
-      positions.each do |p|
-        pubs << p.pub
-      end
+      # positions = Position.near(params[:near_address], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
+      # positions.each do |p|
+      #   pubs << p.pub
+      # end
+      pubs = get_pubs_near_positions(params[:near_address])
     elsif params[:lng] && params[:ltd]
       # Search for pubs near a position (longitude and latitude)
-      positions = Position.near([params[:lng], params[:ltd]], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
-      positions.each do |p|
-        pubs << p.pub
-      end
+      # pubs = []
+      # positions = Position.near([params[:ltd], params[:lng]], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
+      # positions.each do |p|
+      #   pubs << p.pub
+      # end
+      pubs = get_pubs_near_positions([params[:ltd], params[:lng]])
     else
       pubs = Pub.all
     end
 
-
     if pubs.present?
-
       # starts_with query can be present
       pubs = pubs.starts_with(params[:starts_with]) if params[:starts_with]
       response = { offset: @offset, limit: @limit, count: pubs.count, pubs: ActiveModel::ArraySerializer.new(pubs) }

@@ -6,28 +6,26 @@ class Api::V1::ApiBaseController < ApplicationController
   respond_to :json
 
   COULD_NOT_PARSE_JSON = "Could not parse json"
+  API_KEY_INVALID = "API-key invalid"
 
   OFFSET = 0
   LIMIT = 10
 
   private
+    # Checks if the API-key is correct. Called before every action
     def restrict_access
-      # Cannot send multiple Authorization-headers. Knock uses for end-user
-      # authorization so the API-key is sent via a custom header instead
       api_key = request.headers['Api-Key']
       @app = App.where(api_key: api_key).first if api_key
       unless @app
-        render json: { errors: { developer_error: "The API-key is invalid", user_error: "Something went wrong" } }, status: :unauthorized
+        render json: { error: API_KEY_INVALID}, status: :unauthorized
       end
     end
 
+    # Checks wheter offset and limit is present in the API-call
     def offset_params
-      if params[:offset].present?
-        @offset = params[:offset]
-      end
-      if params[:limit].present?
-        @limit = params[:limit]
-      end
+      @offset = params[:offset] if params[:offset].present?
+      @limit = params[:limit] if params[:limit].present?
+
       @offset ||= OFFSET
       @limit ||= LIMIT
     end
