@@ -2,7 +2,10 @@ class Api::V1::TagsController < Api::V1::ApiBaseController
   respond_to :json
   skip_before_action :authenticate, only: [:index, :show]
   before_action :offset_params, only: [:index]
-  CANT_FIND_PUB = "The pub to add the tag to could not be found or was not specified"
+
+  NO_PUB_ID = "Need a pub to attach tag to"
+  CANT_FIND_PUB = "The pub could not find the pub"
+
 
   def index
     if (params[:pub_id])
@@ -19,11 +22,11 @@ class Api::V1::TagsController < Api::V1::ApiBaseController
 
   def create
     if params[:pub_id].blank?
-      render json: { error: "Need a pub to attach tag to" } and return
+      render json: { error: NO_PUB_ID } and return
     end
 
     pub = Pub.find_by_id(params[:pub_id])
-    render json: { error: "Could not find the pub" } and return unless pub.present?
+    render json: { error: CANT_FIND_PUB } and return unless pub.present?
 
     pub = Pub.find_by_id(params[:pub_id])
 
@@ -37,7 +40,7 @@ class Api::V1::TagsController < Api::V1::ApiBaseController
         render json: { errors: tag.errors }, status: 402
       end
     rescue JSON::ParserError => e
-      render json: { developer_error: "Could not parse json", user_error: "Something went wrong" }, status: :bad_request
+      render json: { error: COULD_NOT_PARSE_JSON }, status: :bad_request
     end
 
   end

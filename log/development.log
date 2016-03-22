@@ -35529,3 +35529,777 @@ Processing by Api::V1::PubsController#show as JSON
   [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
   [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
 Completed 200 OK in 42ms (Views: 9.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/api/pubs/1/tags" for ::1 at 2016-03-22 19:00:11 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::TagsController#create as JSON
+  Parameters: {"tag"=>{"name"=>"Nice!!"}, "pub_id"=>"1"}
+Can't verify CSRF token authenticity
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 127ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/pubs/" for ::1 at 2016-03-22 19:01:14 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{}}
+Can't verify CSRF token authenticity
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/knock/auth_token" for ::1 at 2016-03-22 19:01:50 +0100
+Processing by Knock::AuthTokenController#create as */*
+  Parameters: {"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}, "auth_token"=>{"auth"=>{"email"=>"testcreator@example.com", "password"=>"[FILTERED]"}}}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1  [["email", "testcreator@example.com"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."email" = ? LIMIT 1[0m  [["email", "testcreator@example.com"]]
+Completed 201 Created in 268ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/pubs/" for ::1 at 2016-03-22 19:02:21 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{}}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+Completed 400 Bad Request in 17ms (Views: 12.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/pubs/" for ::1 at 2016-03-22 19:03:16 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub"}}
+Can't verify CSRF token authenticity
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 25ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/pubs/" for ::1 at 2016-03-22 19:03:57 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub", "position"=>{"address"=>"Skräddaretorpsvägen 14"}}}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."address" = ? LIMIT 1[0m  [["address", "Skräddaretorpsvägen 14"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "positions" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["address", "Skräddaretorpsvägen 14"], ["latitude", 56.6859614], ["longitude", 16.3350877], ["created_at", "2016-03-22 18:03:57.647330"], ["updated_at", "2016-03-22 18:03:57.647330"]]
+  [1m[35m (184.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPub Exists (0.0ms)[0m  SELECT  1 AS one FROM "pubs" WHERE "pubs"."phone_number" = '1337' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "pubs" ("name", "phone_number", "description", "creator_id", "position_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "WIctors skitpub"], ["phone_number", "1337"], ["description", "Skitpub"], ["creator_id", 1], ["position_id", 6], ["created_at", "2016-03-22 18:03:57.945981"], ["updated_at", "2016-03-22 18:03:57.945981"]]
+  [1m[35m (102.5ms)[0m  commit transaction
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 6]]
+Completed 201 Created in 999ms (Views: 149.0ms | ActiveRecord: 287.9ms)
+
+
+Started POST "/api/pubs/" for ::1 at 2016-03-22 19:04:18 +0100
+Processing by Api::V1::PubsController#create as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub", "position"=>{"address"=>"Skräddaretorpsvägen 14"}}}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."address" = ? LIMIT 1[0m  [["address", "Skräddaretorpsvägen 14"]]
+Completed 409 Conflict in 26ms (Views: 18.0ms | ActiveRecord: 0.5ms)
+
+
+Started PUT "/api/pubs/" for ::1 at 2016-03-22 19:08:28 +0100
+
+ActionController::RoutingError (No route matches [PUT] "/api/pubs"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (15.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (60.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (308.8ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (122.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (16.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (240.1ms)
+
+
+Started PUT "/api/pubs/2" for ::1 at 2016-03-22 19:08:35 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub", "position"=>{"address"=>"Skräddaretorpsvägen 14"}}, "id"=>"2"}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 41ms (Views: 15.6ms | ActiveRecord: 2.5ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:08:40 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub", "position"=>{"address"=>"Skräddaretorpsvägen 14"}}, "id"=>"3"}
+Can't verify CSRF token authenticity
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::AssociationTypeMismatch (Position(#79374612) expected, got ActionController::Parameters(#33827028)):
+  app/controllers/api/v1/pubs_controller.rb:71:in `update'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (78.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (52.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (116.3ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:09:05 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub", "position"=>{"address"=>"Skräddaretorpsvägen 14"}, "id"=>"3", "pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub"}}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+Completed 400 Bad Request in 15ms (ActiveRecord: 0.5ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: pub):
+  app/controllers/api/v1/pubs_controller.rb:93:in `pub_params'
+  app/controllers/api/v1/pubs_controller.rb:71:in `update'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (15.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (15.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (53.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (106.7ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:09:17 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"1337", "description"=>"Skitpub"}, "id"=>"3"}
+Can't verify CSRF token authenticity
+  [1m[36mCreator Load (1.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPub Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "pubs" WHERE ("pubs"."phone_number" = '1337' AND "pubs"."id" != 3) LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Completed 400 Bad Request in 42ms (Views: 13.0ms | ActiveRecord: 1.0ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:09:21 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"13374", "description"=>"Skitpub"}, "id"=>"3"}
+Can't verify CSRF token authenticity
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPub Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "pubs" WHERE ("pubs"."phone_number" = '13374' AND "pubs"."id" != 3) LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "pubs" SET "name" = ?, "phone_number" = ?, "description" = ?, "updated_at" = ? WHERE "pubs"."id" = ?  [["name", "WIctors skitpub"], ["phone_number", "13374"], ["description", "Skitpub"], ["updated_at", "2016-03-22 18:09:21.892230"], ["id", 3]]
+  [1m[36m (147.3ms)[0m  [1mcommit transaction[0m
+Completed 204 No Content in 188ms (ActiveRecord: 148.3ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:09:45 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"13374", "description"=>"Skitpub"}, "id"=>"3"}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPub Exists (1.0ms)[0m  SELECT  1 AS one FROM "pubs" WHERE ("pubs"."phone_number" = '13374' AND "pubs"."id" != 3) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 3]]
+Completed 200 OK in 102ms (Views: 62.1ms | ActiveRecord: 3.0ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:10:22 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"13374", "description"=>"Skitpub"}, "id"=>"3"}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPub Exists (0.0ms)[0m  SELECT  1 AS one FROM "pubs" WHERE ("pubs"."phone_number" = '13374' AND "pubs"."id" != 3) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 73ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:10:53 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"13374", "description"=>"Skitpub"}, "id"=>"3"}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPub Exists (0.0ms)[0m  SELECT  1 AS one FROM "pubs" WHERE ("pubs"."phone_number" = '13374' AND "pubs"."id" != 3) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTag Load (0.5ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 3]]
+Completed 200 OK in 112ms (Views: 69.4ms | ActiveRecord: 2.5ms)
+
+
+Started PUT "/api/pubs/3" for ::1 at 2016-03-22 19:11:52 +0100
+Processing by Api::V1::PubsController#update as JSON
+  Parameters: {"pub"=>{"name"=>"WIctors skitpub", "phone_number"=>"13374", "description"=>"Skitpub"}, "id"=>"3"}
+Can't verify CSRF token authenticity
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35mPub Exists (0.0ms)[0m  SELECT  1 AS one FROM "pubs" WHERE ("pubs"."phone_number" = '13374' AND "pubs"."id" != 3) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 50ms (Views: 17.1ms | ActiveRecord: 1.0ms)
+
+
+Started PUT "/api/pubs?name=Wic" for ::1 at 2016-03-22 19:18:19 +0100
+
+ActionController::RoutingError (No route matches [PUT] "/api/pubs"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (15.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (117.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (54.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (133.6ms)
+
+
+Started GET "/api/pubs?name=Wic" for ::1 at 2016-03-22 19:18:23 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"name"=>"Wic", "pub"=>{}}
+  [1m[35m (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 2 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 2 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 114ms (Views: 98.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/api/pubs?near_address=Skr%C3%A4ddaretorpsv%C3%A4gen" for ::1 at 2016-03-22 19:30:00 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"near_address"=>"Skräddaretorpsvägen", "pub"=>{}}
+  [1m[35m (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 2 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 2 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 114ms (Views: 113.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/pubs?near_address=H%C3%B6gbov%C3%A4gen" for ::1 at 2016-03-22 19:30:17 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"near_address"=>"Högbovägen", "pub"=>{}}
+  [1m[35m (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 2 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (1.1ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 2 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 19ms (Views: 11.0ms | ActiveRecord: 1.1ms)
+  [1m[35mPub Load (0.0ms)[0m  SELECT "pubs".* FROM "pubs"
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/api/pubs?near_address=H%C3%B6gbov%C3%A4gen" for ::1 at 2016-03-22 19:34:32 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"near_address"=>"Högbovägen", "pub"=>{}}
+  [1m[35m (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 2 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 2 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 102ms (Views: 89.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 19:34:41 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[35m (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 2 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (1.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 2 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+Completed 200 OK in 40ms (Views: 26.5ms | ActiveRecord: 3.0ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36mPosition Load (0.5ms)[0m  [1mSELECT positions.*, (69.09332411348201 * ABS(positions.latitude - 56.685159) * 0.7071067811865475) + (59.836573914187355 * ABS(positions.longitude - 16.3357426) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.685159 AND positions.longitude >= 16.3357426) THEN  45.0 WHEN (positions.latitude <  56.685159 AND positions.longitude >= 16.3357426) THEN 135.0 WHEN (positions.latitude <  56.685159 AND positions.longitude <  16.3357426) THEN 225.0 WHEN (positions.latitude >= 56.685159 AND positions.longitude <  16.3357426) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 56.3956954337783 AND 56.9746225662217 AND positions.longitude BETWEEN 15.808716275808566 AND 16.862768924191432)  ORDER BY distance ASC[0m
+
+
+Started GET "/api/pubs?near_address=Skr%C3%A4ddaretorpsv%C3%A4gen" for ::1 at 2016-03-22 19:40:12 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"near_address"=>"Skräddaretorpsvägen", "pub"=>{}}
+  [1m[35m (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 10 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 10 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 6]]
+Completed 200 OK in 143ms (Views: 138.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?near_address=H%C3%B6gbov%C3%A4gen" for ::1 at 2016-03-22 19:40:30 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"near_address"=>"Högbovägen", "pub"=>{}}
+  [1m[35m (1.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 10 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (1.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 10 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (1.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mTag Load (0.5ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mTag Load (0.5ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.2ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 6]]
+Completed 200 OK in 65ms (Views: 52.0ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/api/pubs?near_address=fitta" for ::1 at 2016-03-22 19:40:37 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"near_address"=>"fitta", "pub"=>{}}
+  [1m[35m (1.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 10 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (0.5ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 10 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.5ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.5ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.5ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 6]]
+Completed 200 OK in 62ms (Views: 53.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/pubs" for ::1 at 2016-03-22 19:40:43 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"pub"=>{}}
+  [1m[35m (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 10 OFFSET 0) subquery_for_count
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" LIMIT 10 OFFSET 0[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (1.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 6]]
+Completed 200 OK in 64ms (Views: 52.0ms | ActiveRecord: 4.0ms)
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (69.09332411348201 * ABS(positions.latitude - 56.685159) * 0.7071067811865475) + (59.836573914187355 * ABS(positions.longitude - 16.3357426) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.685159 AND positions.longitude >= 16.3357426) THEN  45.0 WHEN (positions.latitude <  56.685159 AND positions.longitude >= 16.3357426) THEN 135.0 WHEN (positions.latitude <  56.685159 AND positions.longitude <  16.3357426) THEN 225.0 WHEN (positions.latitude >= 56.685159 AND positions.longitude <  16.3357426) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 56.65621264337783 AND 56.71410535662217 AND positions.longitude BETWEEN 16.283039967580855 AND 16.388445232419144)  ORDER BY distance ASC[0m
+
+
+Started GET "/api/tags/1/pubs" for ::1 at 2016-03-22 20:00:39 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"tag_id"=>"1", "pub"=>{}}
+  [1m[35mTag Load (0.5ms)[0m  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" INNER JOIN "pubs_tags" ON "pubs"."id" = "pubs_tags"."pub_id" WHERE "pubs_tags"."tag_id" = ? LIMIT 10 OFFSET 0) subquery_for_count[0m  [["tag_id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" INNER JOIN "pubs_tags" ON "pubs"."id" = "pubs_tags"."pub_id" WHERE "pubs_tags"."tag_id" = ? LIMIT 10 OFFSET 0  [["tag_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 5]]
+Completed 200 OK in 68ms (Views: 37.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/tags/1/" for ::1 at 2016-03-22 20:01:02 +0100
+Processing by Api::V1::TagsController#show as JSON
+  Parameters: {"id"=>"1", "tag"=>{}}
+  [1m[35mTag Load (0.0ms)[0m  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCreator Load (1.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 17ms (Views: 6.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/tags/1/pubs" for ::1 at 2016-03-22 20:01:09 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"tag_id"=>"1", "pub"=>{}}
+  [1m[35mTag Load (0.0ms)[0m  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" INNER JOIN "pubs_tags" ON "pubs"."id" = "pubs_tags"."pub_id" WHERE "pubs_tags"."tag_id" = ? LIMIT 10 OFFSET 0) subquery_for_count[0m  [["tag_id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" INNER JOIN "pubs_tags" ON "pubs"."id" = "pubs_tags"."pub_id" WHERE "pubs_tags"."tag_id" = ? LIMIT 10 OFFSET 0  [["tag_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (1.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 5]]
+Completed 200 OK in 51ms (Views: 40.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/tags/1/pubs" for ::1 at 2016-03-22 20:01:39 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"tag_id"=>"1", "pub"=>{}}
+  [1m[35mTag Load (0.0ms)[0m  SELECT  "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" INNER JOIN "pubs_tags" ON "pubs"."id" = "pubs_tags"."pub_id" WHERE "pubs_tags"."tag_id" = ? LIMIT 10 OFFSET 0) subquery_for_count[0m  [["tag_id", 1]]
+  [1m[35mPub Load (1.0ms)[0m  SELECT  "pubs".* FROM "pubs" INNER JOIN "pubs_tags" ON "pubs"."id" = "pubs_tags"."pub_id" WHERE "pubs_tags"."tag_id" = ? LIMIT 10 OFFSET 0  [["tag_id", 1]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (1.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPosition Load (0.0ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 5]]
+Completed 200 OK in 139ms (Views: 96.8ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:01:46 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[35mCreator Load (0.5ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.5ms)
+
+NoMethodError (undefined method `count' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:26:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (15.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.8ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (64.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (104.4ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:05:19 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.5ms)
+
+NoMethodError (undefined method `count' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:26:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (56.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (137.9ms)
+
+
+Started GET "/api/creators/1/" for ::1 at 2016-03-22 20:05:26 +0100
+Processing by Api::V1::CreatorsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 12ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:05:31 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[36mCreator Load (1.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 1.0ms)
+
+NoMethodError (undefined method `count' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:26:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (15.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (40.8ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (115.5ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:06:40 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `count' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:26:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (64.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (50.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (15.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (115.4ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:07:19 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 15.6ms)
+
+NoMethodError (undefined method `count' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:26:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (15.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (75.3ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (58.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (129.6ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:08:12 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `name' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:19:in `block in index'
+  app/controllers/api/v1/pubs_controller.rb:19:in `times'
+  app/controllers/api/v1/pubs_controller.rb:19:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (50.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (121.5ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:09:25 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[35mCreator Load (1.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 1.0ms)
+
+NoMethodError (undefined method `name' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:19:in `block in index'
+  app/controllers/api/v1/pubs_controller.rb:19:in `times'
+  app/controllers/api/v1/pubs_controller.rb:19:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (16.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (53.8ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (50.3ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (108.5ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:09:42 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `count' for nil:NilClass):
+  app/controllers/api/v1/pubs_controller.rb:28:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (51.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (55.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (117.3ms)
+
+
+Started GET "/api/creators/1/pubs" for ::1 at 2016-03-22 20:10:06 +0100
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"creator_id"=>"1"}
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."creator_id" = ? LIMIT 10 OFFSET 0[0m  [["creator_id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" WHERE "pubs"."creator_id" = ? LIMIT 10 OFFSET 0) subquery_for_count  [["creator_id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mTag Load (15.6ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 5]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 6]]
+Completed 200 OK in 233ms (Views: 111.0ms | ActiveRecord: 16.6ms)

@@ -15,9 +15,11 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
         pubs = tag.pubs.limit(@limit).offset(@offset)
       end
     elsif params[:creator_id]
-      creator = Creator.find_by_id([:creator_id])
+      creator = Creator.find_by_id(params[:creator_id])
+      10.times { puts creator }
       if creator
-        pubs = cretor.pubs.limit(@limit).offset(@offset)
+        pubs = creator.pubs.limit(@limit).offset(@offset)
+        10.times { puts pubs }
       end
     else
       pubs = Pub.limit(@limit).offset(@offset)
@@ -48,24 +50,20 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       end
 
       if pub.save
-        render json: pub, status: 201, location: [:api, pub]
+        respond_with pub, status: 201, location: [:api, pub]
+        # render json: pub, status: 201, location: [:api, pub]
       else
         render json: { errors: pub.errors.messages }, status: 402
       end
     rescue JSON::ParserError => e
-      render json: {
-        developer_error: "Could not parse json",
-        user_error: "Something went wrong"
-      }, status: :bad_request
+      render json: { error: COULD_NOT_PARSE_JSON }, status: :bad_request
     end
   end
 
   def update
     pub = Pub.find_by_id(params[:id])
 
-    render json: {
-      error: CANT_EDIT
-    } and return unless current_user == pub.creator
+    render json: { error: CANT_EDIT } and return unless current_user == pub.creator
     render json: { error: CAND_FIND_PUB } and return unless pub
 
     begin
@@ -75,10 +73,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
         render json: { errors: pub.errors.messages }, status: :bad_request
       end
     rescue JSON::ParserError => e
-      render json: {
-        developer_error: "Could not parse json",
-        user_error: "Something went wrong"
-      }, status: :bad_request
+      render json: { error: COULD_NOT_PARSE_JSON }, status: :bad_request
     end
   end
 

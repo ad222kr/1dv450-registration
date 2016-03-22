@@ -5,8 +5,10 @@ class Api::V1::ApiBaseController < ApplicationController
   # before_action :restrict_access
   respond_to :json
 
+  COULD_NOT_PARSE_JSON = "Could not parse json"
+
   OFFSET = 0
-  LIMIT = 2
+  LIMIT = 10
 
   private
     def restrict_access
