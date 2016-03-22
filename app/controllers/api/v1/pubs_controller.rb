@@ -5,29 +5,53 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
   LOCATION_TAKEN     = "There already exists a pub at that location. Cant have two pubs at the same location eh?"
   CANT_EDIT          = "You did not create the post and cannot edit it"
+  CANT_DESTROY       = "You did not create the post and cannot delete it"
   CAND_FIND_PUB      = "Could not find a pub with that id"
   PUB_NEEDS_POSITION = "The pub needs aposition!"
+  DEFAULT_DISTANCE   = 5
 
   def index
     if params[:tag_id]
+      # Get pubs connected to a tag
       tag = Tag.find_by_id(params[:tag_id])
       if tag
         pubs = tag.pubs.limit(@limit).offset(@offset)
       end
     elsif params[:creator_id]
+      # Get pubs connected to a creator
       creator = Creator.find_by_id(params[:creator_id])
       10.times { puts creator }
       if creator
         pubs = creator.pubs.limit(@limit).offset(@offset)
         10.times { puts pubs }
       end
+    elsif params[:near_address]
+    # Query params starts here
+      # Search for pubs near a position (address)
+      positions = Position.near(params[:near_address], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
+      positions.each do |p|
+        pubs << p.pub
+      end
+    elsif params[:lng] && params[:ltd]
+      # Search for pubs near a position (longitude and latitude)
+      positions = Position.near([params[:lng], params[:ltd]], params[:distance] ? params[:distance] : DEFAULT_DISTANCE, :units => :km)
+      positions.each do |p|
+        pubs << p.pub
+      end
     else
-      pubs = Pub.limit(@limit).offset(@offset)
+      pubs = Pub.all
     end
-    pubs = pubs.starts_with(params[:starts_with]) if params[:starts_with]
-    response = { offset: @offset, limit: @limit, count: pubs.count, pubs: ActiveModel::ArraySerializer.new(pubs) }
-    respond_with response
 
+
+    if pubs.present?
+
+      # starts_with query can be present
+      pubs = pubs.starts_with(params[:starts_with]) if params[:starts_with]
+      response = { offset: @offset, limit: @limit, count: pubs.count, pubs: ActiveModel::ArraySerializer.new(pubs) }
+      respond_with response
+    else
+      render json: { error: "Could not find any pubs" }, status: :not_found
+    end
   end
 
   def show
@@ -63,8 +87,10 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   def update
     pub = Pub.find_by_id(params[:id])
 
-    render json: { error: CANT_EDIT } and return unless current_user == pub.creator
-    render json: { error: CAND_FIND_PUB } and return unless pub
+    render json: { error: CAND_FIND_PUB }, status: :bad_request and return unless pub
+    render json: { error: CANT_EDIT }, status: :unauthorized and return unless current_user == pub.creator
+
+
 
     begin
       if pub.update(pub_params)
@@ -78,9 +104,15 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   end
 
   def destroy
-    pub = Pub.find(params[:id])
+    10.times { puts current_user.id }
+    pub = Pub.find_by_id(params[:id])
+
+    render json: { error: CAND_FIND_PUB }, status: :bad_request and return unless pub
+    render json: { error: CANT_DESTROY }, status: :bad_request and return unless current_user == pub.creator
+
     pub.destroy
-    head 204
+    render json: { action: "destroy", message: "Pub with id #{params[:id]} was removed" }, status: :ok
+
   end
 
   private

@@ -10,5 +10,4 @@ class Pub < ActiveRecord::Base
   DEFAULT_DISTANCE = 5
 
   scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
-  scope :near_address, -> (address) { Position.near(address).pubs }
 end
