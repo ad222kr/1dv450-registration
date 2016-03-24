@@ -39714,3 +39714,19 @@ Processing by HomeController#index as HTML
   Rendered layouts/_header.html.erb (0.0ms)
   Rendered layouts/_footer.html.erb (0.0ms)
 Completed 200 OK in 117ms (Views: 117.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-24 18:56:59 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered home/index.erb within layouts/application (8.0ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 3710ms (Views: 3692.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-24 18:57:03 +0100
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-24 18:57:03 +0100
