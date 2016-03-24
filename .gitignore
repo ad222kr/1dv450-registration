@@ -3,7 +3,7 @@
 *.iml
 
 .bundle
-Gemfile
+
 
 ## Directory-based project format:
 .idea/
