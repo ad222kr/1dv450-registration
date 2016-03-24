@@ -2,7 +2,7 @@ class Api::V1::ApiBaseController < ApplicationController
   include Knock::Authenticable
   protect_from_forgery with: :null_session
   before_action :authenticate
-  # before_action :restrict_access
+  before_action :restrict_access
   respond_to :json
 
   COULD_NOT_PARSE_JSON = "Could not parse json"
