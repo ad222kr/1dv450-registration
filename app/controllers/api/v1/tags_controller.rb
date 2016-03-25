@@ -41,8 +41,11 @@ class Api::V1::TagsController < Api::V1::ApiBaseController
     pub = Pub.find_by_id(params[:pub_id])
 
     begin
-      tag = Tag.new(tag_params)
-
+      if tag.find_by(name: tag_params[:name])
+        tag = tag.find_by(name: tag_params[:name])
+      else
+        tag = Tag.new(tag_params)
+      end
       if tag.save
         pub.tags << tag
         render json: tag, status: 201, location: [:api, tag]
