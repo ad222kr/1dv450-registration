@@ -41,8 +41,8 @@ class Api::V1::TagsController < Api::V1::ApiBaseController
     pub = Pub.find_by_id(params[:pub_id])
 
     begin
-      if tag.find_by(name: tag_params[:name])
-        tag = tag.find_by(name: tag_params[:name])
+      if Tag.find_by(name: tag_params[:name])
+        tag = Tag.find_by(name: tag_params[:name])
       else
         tag = Tag.new(tag_params)
       end
