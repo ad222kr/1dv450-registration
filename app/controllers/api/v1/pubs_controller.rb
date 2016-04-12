@@ -26,7 +26,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       # Get pubs near position (latitude and longitude)
       pubs = get_pubs_near_positions([params[:ltd], params[:lng]])
     else
-      pubs = Pub.all
+      pubs = Pub.all.limit(@limit).offset(@offset)
     end
 
     if pubs.present?

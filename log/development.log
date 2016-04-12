@@ -39730,3 +39730,113 @@ Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5dec
 
 
 Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-24 18:57:03 +0100
+
+
+Started GET "/api/pubs?offset=0&limit=3" for ::1 at 2016-04-12 16:37:58 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3"}
+  [1m[35mApp Load (1.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "5153de68ca2f4a6a4c753d69107e879e"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 231ms (Views: 12.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/pubs?offset=0&limit=3" for ::1 at 2016-04-12 16:38:08 +0200
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "TestApiKey"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 48ms (Views: 45.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?offset=0&limit=3" for ::1 at 2016-04-12 16:38:13 +0200
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3"}
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 16ms (Views: 15.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?offset=0&limit=3" for ::1 at 2016-04-12 16:38:18 +0200
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3"}
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 18ms (Views: 17.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?offset=0&limit=3" for ::1 at 2016-04-12 16:38:38 +0200
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "justATestApiKeyTwoLol"]]
+Filter chain halted as :restrict_access rendered or redirected
+Completed 401 Unauthorized in 16ms (Views: 13.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/pubs?offset=0&limit=3" for ::1 at 2016-04-12 16:39:03 +0200
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3"}
+  [1m[36mApp Load (1.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "25dd68a8685e349d44202d460ccba38c"]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" LIMIT 3 OFFSET 0
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "pubs" LIMIT 3 OFFSET 0) subquery_for_count[0m
+  [1m[35mCreator Load (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCreator Load (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPosition Load (0.5ms)[0m  SELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?[0m  [["pub_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT  "positions".* FROM "positions" WHERE "positions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTag Load (0.5ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+Completed 200 OK in 846ms (Views: 524.5ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/api/pubs?offset=0&limit=3&near_address=skr%C3%A4ddaretorpsv%C3%A4gen" for ::1 at 2016-04-12 16:40:08 +0200
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3", "near_address"=>"skräddaretorpsvägen"}
+  [1m[36mApp Load (0.0ms)[0m  [1mSELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1[0m  [["api_key", "25dd68a8685e349d44202d460ccba38c"]]
+  [1m[35mPosition Load (12.1ms)[0m  SELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.685159) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.3357426) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.685159 AND positions.longitude >= 16.3357426) THEN  45.0 WHEN (positions.latitude <  56.685159 AND positions.longitude >= 16.3357426) THEN 135.0 WHEN (positions.latitude <  56.685159 AND positions.longitude <  16.3357426) THEN 225.0 WHEN (positions.latitude >= 56.685159 AND positions.longitude <  16.3357426) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 56.59522683940813 AND 56.77509116059187 AND positions.longitude BETWEEN 16.172003112360894 AND 16.499482087639105)  ORDER BY distance ASC
+  [1m[36mPub Load (1.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 5]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 1]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 3]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 2]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 4]]
+Completed 500 Internal Server Error in 166ms (ActiveRecord: 13.1ms)
+
+NoMethodError (undefined method `limit' for #<Array:0x88e97b0>):
+  app/controllers/api/v1/pubs_controller.rb:24:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (142.7ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (123.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (258.2ms)
+
+
+Started GET "/api/pubs?offset=0&limit=3&near_address=skr%C3%A4ddaretorpsv%C3%A4gen" for ::1 at 2016-04-12 16:41:34 +0200
+Processing by Api::V1::PubsController#index as JSON
+  Parameters: {"offset"=>"0", "limit"=>"3", "near_address"=>"skräddaretorpsvägen"}
+  [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "25dd68a8685e349d44202d460ccba38c"]]
+  [1m[36mPosition Load (0.0ms)[0m  [1mSELECT positions.*, (111.19492664455873 * ABS(positions.latitude - 56.685159) * 0.7071067811865475) + (96.29763124613503 * ABS(positions.longitude - 16.3357426) * 0.7071067811865475) AS distance, CASE WHEN (positions.latitude >= 56.685159 AND positions.longitude >= 16.3357426) THEN  45.0 WHEN (positions.latitude <  56.685159 AND positions.longitude >= 16.3357426) THEN 135.0 WHEN (positions.latitude <  56.685159 AND positions.longitude <  16.3357426) THEN 225.0 WHEN (positions.latitude >= 56.685159 AND positions.longitude <  16.3357426) THEN 315.0 END AS bearing FROM "positions" WHERE (positions.latitude BETWEEN 56.59522683940813 AND 56.77509116059187 AND positions.longitude BETWEEN 16.172003112360894 AND 16.499482087639105)  ORDER BY distance ASC[0m
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 5]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 1]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 3]]
+  [1m[36mPub Load (0.0ms)[0m  [1mSELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1[0m  [["position_id", 2]]
+  [1m[35mPub Load (0.0ms)[0m  SELECT  "pubs".* FROM "pubs" WHERE "pubs"."position_id" = ? LIMIT 1  [["position_id", 4]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.5ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 1]]
+  [1m[36mCACHE (0.5ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 3]]
+  [1m[36mCreator Load (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "creators".* FROM "creators" WHERE "creators"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "pubs_tags" ON "tags"."id" = "pubs_tags"."tag_id" WHERE "pubs_tags"."pub_id" = ?  [["pub_id", 4]]
+Completed 200 OK in 238ms (Views: 90.1ms | ActiveRecord: 6.0ms)
