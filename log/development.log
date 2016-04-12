@@ -41119,3 +41119,11 @@ Processing by Api::V1::PubsController#index as JSON
   [1m[35mApp Load (0.0ms)[0m  SELECT  "apps".* FROM "apps" WHERE "apps"."api_key" = ?  ORDER BY "apps"."id" ASC LIMIT 1  [["api_key", "5153de68ca2f4a6a4c753d69107e879e"]]
 Filter chain halted as :restrict_access rendered or redirected
 Completed 401 Unauthorized in 20ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/pubs/1/tags" for ::1 at 2016-04-12 20:29:18 +0200
+Processing by Api::V1::TagsController#create as JSON
+  Parameters: {"tag"=>{"name"=>"Nice!!"}, "pub_id"=>"1"}
+Can't verify CSRF token authenticity
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.0ms)
