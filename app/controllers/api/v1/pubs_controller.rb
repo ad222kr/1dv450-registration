@@ -53,8 +53,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       return unless position_param_present? && position_is_available?
 
       pub = Pub.new(pub_params.except(:tags, :position))
-      pub.creator = current_user
-      pub.position = Position.create(pub_params[:position])
+
 
       if tags = pub_params[:tags]
         tags.each do |tag|
@@ -63,6 +62,8 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       end
 
       if pub.save
+        pub.creator = current_user
+        pub.position = Position.create(pub_params[:position])
         respond_with pub, status: 201, location: [:api, pub]
       else
         render json: { errors: pub.errors.messages }, status: :bad_request
