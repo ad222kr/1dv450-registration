@@ -18,7 +18,9 @@
 		"e9efd713-61da-4f21-dea2-31754a6adb98",
 		"d3aa6403-983f-7db2-4460-e8e8d06bf225",
 		"ce78b23d-b2a6-ea74-091f-b7ff8bef5f63",
-		"df2840bd-cbf3-26b8-3083-886b18c02492"
+		"df2840bd-cbf3-26b8-3083-886b18c02492",
+		"e3ff19c6-194c-feab-6273-faea165ee87e",
+		"32b5e5a1-fbba-edf9-535b-2618d91827c8"
 	],
 	"folders": [],
 	"timestamp": 0,
@@ -85,6 +87,27 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {}
+		},
+		{
+			"id": "32b5e5a1-fbba-edf9-535b-2618d91827c8",
+			"headers": "Authorization: {{Authentication}}\nApi-Key: {{Api-Key}}\nContent-Type: application/json\n",
+			"url": "https://registration-1dv450.herokuapp.com/api/positions/1",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "0b33ebec-e81d-768b-fffa-486d98d92e5d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Get Specific position",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1460492331482,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"pub\": {\n        \"name\": \"Puben som är uppdaterad hihi!\"\n    }\n}"
 		},
 		{
 			"id": "429c000d-c920-cefa-02c1-0aa8a829ba8c",
@@ -294,6 +317,27 @@
 			"description": "",
 			"collectionId": "0b33ebec-e81d-768b-fffa-486d98d92e5d",
 			"responses": []
+		},
+		{
+			"id": "e3ff19c6-194c-feab-6273-faea165ee87e",
+			"headers": "Authorization: {{Authentication}}\nApi-Key: {{Api-Key}}\nContent-Type: application/json\n",
+			"url": "https://registration-1dv450.herokuapp.com/api/positions",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "0b33ebec-e81d-768b-fffa-486d98d92e5d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Get all positions",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1460492310637,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"pub\": {\n        \"name\": \"Puben som är uppdaterad hihi!\"\n    }\n}"
 		},
 		{
 			"id": "e9efd713-61da-4f21-dea2-31754a6adb98",

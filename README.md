@@ -26,7 +26,70 @@ För att kunna skapa och uppdatera resurser behövs även en JWT-token skickas m
 Authorization: Bearer your_jwt_token
 ```  
 
-### API-dokumentation
+## API-dokumentation
+### Pubar
+**Hämta en specifik pub - GET** - https://registration-1dv450.herokuapp.com/api/pubs/:id  
+Exempel:  
+ https://registration-1dv450.herokuapp.com/api/pubs/1
+
+**Hämta alla pubar - GET** - https://registration-1dv450.herokuapp.com/api/pubs  
+Exempel (med offset och limit-params):  
+https://registration-1dv450.herokuapp.com/api/pubs?offset=1&limit=3  
+
+**Hämta alla pubar nära en adress - GET** - https://registration-1dv450.herokuapp.com/api/pubs?near_address=your_adress  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/pubs?near_address=Skräddaretorpsvägen
+
+**Hämta alla pubar nära latitud och longitud - GET** - https://registration-1dv450.herokuapp.com/api/pubs?lat=XX&lng=XX  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/pubs?lat=56&lng=16
+
+**Skapa en pub - POST** -
+https://registration-1dv450.herokuapp.com/api/pubs  
+Exempel:
+```json
+{
+    "pub": {
+        "name": "Production test pub",
+        "phone_number": "0789426349",  
+        "description": "En skön pub, jag testar i produktion yolo",
+        "position": {
+            "address": "Storgatan 17, Sandviken"
+        },
+        "tags": [
+            { "name": "Skönt!" },
+            { "name": "Fint!" }
+        ]
+    }
+}
+```
+Required params: name, phone_number, description, position
+
+
+**Uppdatera en pub - PUT** - https://registration-1dv450.herokuapp.com/api/pubs/:id  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/pubs/1  
+```json
+{
+  "pub": {
+      "name": "Puben som är uppdaterad hihi!"
+  }
+}
+```
+
+
+
+**Ta bort en pub - DELTE** - https://registration-1dv450.herokuapp.com/api/pubs/:id  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/pubs/1
+
+### Positions
+
+### Tags
+
+### Creators
+
+
 
 
 ## Registrerings-applikation
