@@ -64,6 +64,8 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       if pub.save
         pub.creator = current_user
         pub.position = Position.create(pub_params[:position])
+        pub.creator.save
+        pub.position.save
         respond_with pub, status: 201, location: [:api, pub]
       else
         render json: { errors: pub.errors.messages }, status: :bad_request
