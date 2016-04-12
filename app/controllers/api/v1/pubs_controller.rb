@@ -40,7 +40,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
   end
 
   def show
-    pub = Pub.find(params[:id])
+    pub = Pub.find_by_id(params[:id])
     if pub.present?
       respond_with pub, status: :ok
     else
