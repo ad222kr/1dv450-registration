@@ -1,3 +1,11 @@
+## För att använda POSTMAN
+[Postman-collection](1dv450-API.json.postman_collection)  
+Du behöver sätta några miljövariabler  
+1. Authentication: Bearer din_jwt_token_du_får_från_api
+2. Api-Key: 52c1aefb58a0afe043f6121e94e2c3cd
+3. Accept: application/vnd.registration-1dv450.v1
+4. Content-Type: application/json
+
 ## Hur man använder API:t
 1. Registrera dig som användare i registrerings-applikationen och generera en
 API-nyckel för din applikation
@@ -36,6 +44,10 @@ Exempel:
 Exempel (med offset och limit-params):  
 https://registration-1dv450.herokuapp.com/api/pubs?offset=1&limit=3  
 
+**Hämta alla pubar som startar med angiven sträng - GET** - https://registration-1dv450.herokuapp.com/api/pubs?starts_with=search_query  
+Exepel:  
+https://registration-1dv450.herokuapp.com/api/pubs?starts_with=Sve
+
 **Hämta alla pubar nära en adress - GET** - https://registration-1dv450.herokuapp.com/api/pubs?near_address=your_adress  
 Exempel:  
 https://registration-1dv450.herokuapp.com/api/pubs?near_address=Skräddaretorpsvägen
@@ -43,6 +55,14 @@ https://registration-1dv450.herokuapp.com/api/pubs?near_address=Skräddaretorpsv
 **Hämta alla pubar nära latitud och longitud - GET** - https://registration-1dv450.herokuapp.com/api/pubs?lat=XX&lng=XX  
 Exempel:  
 https://registration-1dv450.herokuapp.com/api/pubs?lat=56&lng=16
+
+**Hämta alla pubar kopplad till en specifik tag - GET** - https://registration-1dv450.herokuapp.com/api/tags/:id/pubs  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/tags/1/pubs
+
+**Hämta alla pubar kopplad till en specifik creator - GET** - https://registration-1dv450.herokuapp.com/api/creators/:id/pubs  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/creators/1/pubs
 
 **Skapa en pub - POST** -
 https://registration-1dv450.herokuapp.com/api/pubs  
@@ -84,10 +104,25 @@ Exempel:
 https://registration-1dv450.herokuapp.com/api/pubs/1
 
 ### Positions
+**Hämta alla positioner - GET** - https://registration-1dv450.herokuapp.com/api/positions
+
+**Hämta specifik position - GET** - https://registration-1dv450.herokuapp.com/api/positions/:id  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/positions/1
 
 ### Tags
+**Hämta alla tags - GET** - https://registration-1dv450.herokuapp.com/api/tags/
+
+**Hämta specifik tag - GET** - https://registration-1dv450.herokuapp.com/api/tags/:id  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/tags/1/
 
 ### Creators
+**Hämta alla creators - GET** - https://registration-1dv450.herokuapp.com/api/creators
+
+**Hämta specifik creator - GET** - https://registration-1dv450.herokuapp.com/api/creators/:id  
+Exempel:  
+https://registration-1dv450.herokuapp.com/api/creators/1
 
 
 
