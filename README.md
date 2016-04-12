@@ -1,10 +1,10 @@
 ## För att använda POSTMAN
 [Postman-collection](1dv450-API.json.postman_collection)  
 Du behöver sätta några miljövariabler  
-1. Authentication: Bearer din_jwt_token_du_får_från_api
-2. Api-Key: 52c1aefb58a0afe043f6121e94e2c3cd
-3. Accept: application/vnd.registration-1dv450.v1
-4. Content-Type: application/json
+1. Authentication: Bearer din_jwt_token_du_får_från_api  
+2. Api-Key: 52c1aefb58a0afe043f6121e94e2c3cd  
+3. Accept: application/vnd.registration-1dv450.v1  
+4. Content-Type: application/json  
 
 ## Hur man använder API:t
 1. Registrera dig som användare i registrerings-applikationen och generera en
