@@ -23,7 +23,7 @@ class Api::V1::TagsController < Api::V1::ApiBaseController
 
   def show
     tag = Tag.find_by_id(params[:id])
-    if tag.presnet?
+    if tag.present?
       respond_with tag, status: :ok
     else
       render json: { error: "Could not find tag with id of #{params[:id]}" }, status: :not_found
