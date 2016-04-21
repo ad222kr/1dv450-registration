@@ -19,6 +19,9 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
       # Get pubs connected to a creator
       creator = Creator.find_by_id(params[:creator_id])
       pubs = creator.pubs.limit(@limit).offset(@offset) if creator.present?
+    elsif params[:email]
+      creator = Creator.find_by_email(params[:email]);
+      pubs = creator.pubs.limit(@limit).offset(@offset) if creator.present?
     elsif params[:near_address]
       # Get pubs near position (address)
       pubs = get_pubs_near_positions(params[:near_address])
