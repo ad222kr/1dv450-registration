@@ -13,7 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "responders"
 gem 'knock'
 gem 'geocoder'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.9.5'
 gem 'rack-cors', :require => 'rack/cors'
 
 
