@@ -113,7 +113,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
     def position_param_present?
       if pub_params[:position].blank?
-        render json: { errors: PUB_NEEDS_POSITION }
+        render json: { error: PUB_NEEDS_POSITION }
         return false
       end
       return true
@@ -121,7 +121,7 @@ class Api::V1::PubsController < Api::V1::ApiBaseController
 
     def position_is_available?
       if Position.find_by_address(pub_params[:position][:address])
-        render json: { errors: LOCATION_TAKEN }, status: :conflict
+        render json: { error: LOCATION_TAKEN }, status: :conflict
         return false
       end
       return true
